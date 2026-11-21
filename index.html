@@ -1,0 +1,2346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Project Progress Tracker</title>
+
+  <style>
+    :root {
+      --page: #f5f7fb;
+      --surface: #ffffff;
+      --surface-muted: #f8fafc;
+      --surface-hover: #f1f5f9;
+      --text: #172033;
+      --text-muted: #667085;
+      --border: #e5eaf1;
+      --primary: #5b5ce2;
+      --primary-dark: #4849cb;
+      --primary-soft: #eeeeff;
+      --blue: #3b82f6;
+      --green: #16a36a;
+      --green-soft: #eaf9f1;
+      --amber: #d97706;
+      --amber-soft: #fff7e6;
+      --red: #dc3545;
+      --red-soft: #fff0f1;
+      --shadow:
+        0 1px 2px rgba(16, 24, 40, 0.04),
+        0 8px 24px rgba(16, 24, 40, 0.06);
+      --radius: 18px;
+    }
+
+    body.dark {
+      --page: #0e1118;
+      --surface: #171b24;
+      --surface-muted: #11151d;
+      --surface-hover: #202633;
+      --text: #f1f5f9;
+      --text-muted: #9ca7b8;
+      --border: #29313f;
+      --primary: #8283ff;
+      --primary-dark: #6c6df5;
+      --primary-soft: rgba(130, 131, 255, 0.14);
+      --green: #33c987;
+      --green-soft: rgba(51, 201, 135, 0.12);
+      --amber: #f5ad42;
+      --amber-soft: rgba(245, 173, 66, 0.12);
+      --red: #ff6b78;
+      --red-soft: rgba(255, 107, 120, 0.12);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--page);
+      color: var(--text);
+      font-family:
+        Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      transition:
+        background 0.25s ease,
+        color 0.25s ease;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline: 3px solid rgba(91, 92, 226, 0.2);
+      outline-offset: 2px;
+    }
+
+    .app-shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 26px 0 56px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      color: #ffffff;
+      background: linear-gradient(145deg, #7475ff, #4c4dd2);
+      box-shadow: 0 8px 20px rgba(91, 92, 226, 0.24);
+    }
+
+    .brand-mark svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .brand-copy span {
+      display: block;
+      margin-top: 3px;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn,
+    .secondary-btn,
+    .primary-btn,
+    .danger-btn,
+    .ghost-btn {
+      min-height: 42px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-weight: 700;
+      transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        border-color 0.15s ease;
+    }
+
+    .icon-btn:hover,
+    .secondary-btn:hover,
+    .primary-btn:hover,
+    .danger-btn:hover,
+    .ghost-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .icon-btn {
+      width: 42px;
+      padding: 0;
+      color: var(--text);
+      background: var(--surface);
+      border-color: var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .icon-btn svg,
+    .secondary-btn svg,
+    .primary-btn svg,
+    .danger-btn svg,
+    .ghost-btn svg,
+    .action-btn svg {
+      width: 17px;
+      height: 17px;
+      pointer-events: none;
+    }
+
+    .secondary-btn {
+      padding: 0 15px;
+      color: var(--text);
+      background: var(--surface);
+      border-color: var(--border);
+    }
+
+    .secondary-btn:hover {
+      background: var(--surface-hover);
+    }
+
+    .primary-btn {
+      padding: 0 16px;
+      color: #ffffff;
+      background: var(--primary);
+      box-shadow: 0 8px 18px rgba(91, 92, 226, 0.2);
+    }
+
+    .primary-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .danger-btn {
+      padding: 0 16px;
+      color: #ffffff;
+      background: var(--red);
+    }
+
+    .ghost-btn {
+      padding: 0 14px;
+      color: var(--text-muted);
+      background: transparent;
+    }
+
+    .ghost-btn:hover {
+      color: var(--text);
+      background: var(--surface-hover);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(24px, 4vw, 40px);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(91, 92, 226, 0.14), transparent 36%),
+        var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .eyebrow {
+      margin: 0 0 9px;
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .project-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .project-title {
+      margin: 0;
+      max-width: 720px;
+      font-size: clamp(27px, 4vw, 42px);
+      line-height: 1.14;
+      letter-spacing: -0.035em;
+    }
+
+    .edit-title-btn {
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 9px;
+      color: var(--text-muted);
+      background: transparent;
+    }
+
+    .edit-title-btn:hover {
+      color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    .edit-title-btn svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .title-editor {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      width: min(100%, 650px);
+    }
+
+    .title-editor.active {
+      display: flex;
+    }
+
+    .title-editor input {
+      width: 100%;
+      min-width: 0;
+      padding: 12px 14px;
+      color: var(--text);
+      background: var(--surface-muted);
+      border: 1px solid var(--primary);
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .hero-description {
+      max-width: 690px;
+      margin: 11px 0 0;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    .progress-score {
+      min-width: 145px;
+      padding: 17px;
+      text-align: center;
+      background: var(--surface-muted);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+    }
+
+    .progress-score strong {
+      display: block;
+      color: var(--primary);
+      font-size: 29px;
+      letter-spacing: -0.04em;
+    }
+
+    .progress-score span {
+      display: block;
+      margin-top: 2px;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .overall-progress {
+      margin-top: 30px;
+    }
+
+    .progress-label-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 9px;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .progress-track {
+      height: 14px;
+      overflow: hidden;
+      background: var(--surface-hover);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #4f51df, #7287ff);
+      box-shadow: 0 0 18px rgba(91, 92, 226, 0.34);
+      transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .stat-card {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 17px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-icon {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    .stat-icon.green {
+      color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .stat-icon.amber {
+      color: var(--amber);
+      background: var(--amber-soft);
+    }
+
+    .stat-icon.gray {
+      color: var(--text-muted);
+      background: var(--surface-hover);
+    }
+
+    .stat-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .stat-copy strong {
+      display: block;
+      font-size: 24px;
+      letter-spacing: -0.04em;
+    }
+
+    .stat-copy span {
+      display: block;
+      margin-top: 2px;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .workspace {
+      margin-top: 18px;
+      padding: 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .workspace-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .workspace-heading h2 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .workspace-heading p {
+      margin: 5px 0 0;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .filters {
+      display: flex;
+      gap: 6px;
+      padding: 5px;
+      overflow-x: auto;
+      background: var(--surface-muted);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      scrollbar-width: none;
+    }
+
+    .filters::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-btn {
+      min-height: 34px;
+      padding: 0 13px;
+      border: 0;
+      border-radius: 9px;
+      color: var(--text-muted);
+      background: transparent;
+      font-size: 13px;
+      font-weight: 750;
+      white-space: nowrap;
+    }
+
+    .filter-btn.active {
+      color: var(--text);
+      background: var(--surface);
+      box-shadow: 0 2px 8px rgba(16, 24, 40, 0.08);
+    }
+
+    .sort-select {
+      min-height: 42px;
+      padding: 0 36px 0 13px;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 11px;
+    }
+
+    .task-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .task-card {
+      position: relative;
+      padding: 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
+    }
+
+    .task-card:hover {
+      transform: translateY(-1px);
+      border-color: rgba(91, 92, 226, 0.35);
+    }
+
+    .task-card.completed {
+      background: var(--green-soft);
+    }
+
+    .task-main {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 14px;
+    }
+
+    .task-check {
+      width: 22px;
+      height: 22px;
+      margin-top: 2px;
+      accent-color: var(--green);
+      cursor: pointer;
+    }
+
+    .task-name {
+      margin: 0;
+      overflow-wrap: anywhere;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .completed .task-name {
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    .task-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 0 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .tag.low {
+      color: var(--green);
+      background: var(--green-soft);
+    }
+
+    .tag.medium {
+      color: var(--amber);
+      background: var(--amber-soft);
+    }
+
+    .tag.high {
+      color: var(--red);
+      background: var(--red-soft);
+    }
+
+    .due-date,
+    .status-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .due-date.overdue {
+      color: var(--red);
+    }
+
+    .due-date svg,
+    .status-label svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .task-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .action-btn {
+      width: 34px;
+      height: 34px;
+      padding: 0;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: var(--text-muted);
+      background: var(--surface);
+    }
+
+    .action-btn:hover {
+      color: var(--primary);
+      background: var(--primary-soft);
+      border-color: transparent;
+    }
+
+    .action-btn.delete:hover {
+      color: var(--red);
+      background: var(--red-soft);
+    }
+
+    .task-progress-row {
+      display: grid;
+      grid-template-columns: minmax(120px, 1fr) 54px;
+      align-items: center;
+      gap: 12px;
+      margin: 16px 0 0 36px;
+    }
+
+    .task-slider {
+      width: 100%;
+      height: 6px;
+      appearance: none;
+      -webkit-appearance: none;
+      border-radius: 999px;
+      outline: none;
+      background:
+        linear-gradient(
+          90deg,
+          var(--primary) 0%,
+          var(--primary) var(--slider-value),
+          var(--surface-hover) var(--slider-value),
+          var(--surface-hover) 100%
+        );
+      cursor: pointer;
+    }
+
+    .task-slider::-webkit-slider-thumb {
+      width: 17px;
+      height: 17px;
+      appearance: none;
+      -webkit-appearance: none;
+      border: 3px solid var(--surface);
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 1px 5px rgba(16, 24, 40, 0.25);
+    }
+
+    .task-slider::-moz-range-thumb {
+      width: 13px;
+      height: 13px;
+      border: 3px solid var(--surface);
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 1px 5px rgba(16, 24, 40, 0.25);
+    }
+
+    .task-progress-value {
+      text-align: right;
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .empty-state {
+      padding: 50px 20px;
+      text-align: center;
+      background: var(--surface-muted);
+      border: 1px dashed var(--border);
+      border-radius: 16px;
+    }
+
+    .empty-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 12px;
+      color: var(--text-muted);
+      background: var(--surface-hover);
+      border-radius: 16px;
+    }
+
+    .empty-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .empty-state h3 {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .empty-state p {
+      margin: 7px 0 0;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(7, 11, 20, 0.58);
+      backdrop-filter: blur(5px);
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+      animation: fade-in 0.18s ease;
+    }
+
+    .modal {
+      width: min(520px, 100%);
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+      padding: 23px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.26);
+      animation: slide-in 0.2s ease;
+    }
+
+    .report-modal {
+      width: min(760px, 100%);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .modal-header p {
+      margin: 6px 0 0;
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .close-btn {
+      width: 36px;
+      height: 36px;
+      flex: 0 0 auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text-muted);
+      background: var(--surface);
+    }
+
+    .close-btn:hover {
+      color: var(--red);
+      background: var(--red-soft);
+    }
+
+    .close-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .form-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-field label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .form-field input,
+    .form-field select {
+      width: 100%;
+      min-height: 45px;
+      padding: 0 13px;
+      color: var(--text);
+      background: var(--surface-muted);
+      border: 1px solid var(--border);
+      border-radius: 11px;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus {
+      border-color: var(--primary);
+    }
+
+    .range-field {
+      padding: 13px;
+      background: var(--surface-muted);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .range-heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .range-heading span {
+      color: var(--primary);
+      font-weight: 850;
+    }
+
+    .range-field input {
+      min-height: auto;
+      padding: 0;
+      border: 0;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 9px;
+      margin-top: 21px;
+    }
+
+    .report-card {
+      padding: 25px;
+      color: #172033;
+      background: #ffffff;
+      border: 1px solid #e5eaf1;
+      border-radius: 16px;
+    }
+
+    .report-header {
+      padding-bottom: 18px;
+      border-bottom: 1px solid #e5eaf1;
+    }
+
+    .report-header small {
+      color: #667085;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .report-header h2 {
+      margin: 8px 0 5px;
+      font-size: 25px;
+    }
+
+    .report-header p {
+      margin: 0;
+      color: #667085;
+      font-size: 13px;
+    }
+
+    .report-summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 9px;
+      margin: 18px 0;
+    }
+
+    .report-stat {
+      padding: 12px;
+      text-align: center;
+      background: #f8fafc;
+      border-radius: 11px;
+    }
+
+    .report-stat strong {
+      display: block;
+      font-size: 20px;
+    }
+
+    .report-stat span {
+      color: #667085;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .report-progress {
+      height: 11px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      background: #e8edf5;
+      border-radius: 999px;
+    }
+
+    .report-progress div {
+      height: 100%;
+      background: linear-gradient(90deg, #4f51df, #7287ff);
+      border-radius: inherit;
+    }
+
+    .report-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .report-table th,
+    .report-table td {
+      padding: 10px 8px;
+      text-align: left;
+      border-bottom: 1px solid #edf0f5;
+    }
+
+    .report-table th {
+      color: #667085;
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
+    .report-footer {
+      margin-top: 18px;
+      color: #667085;
+      font-size: 11px;
+    }
+
+    .toast-container {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 200;
+      display: grid;
+      gap: 8px;
+    }
+
+    .toast {
+      max-width: 340px;
+      padding: 13px 15px;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      font-size: 13px;
+      font-weight: 650;
+      animation: toast-in 0.22s ease;
+    }
+
+    .toast.success {
+      border-left-color: var(--green);
+    }
+
+    .toast.error {
+      border-left-color: var(--red);
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slide-in {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes toast-in {
+      from {
+        opacity: 0;
+        transform: translateY(9px);
+      }
+    }
+
+    @media (max-width: 820px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-top {
+        display: block;
+      }
+
+      .progress-score {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 6px;
+        min-width: 0;
+        margin-top: 19px;
+        padding: 11px 14px;
+      }
+
+      .progress-score strong {
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .app-shell {
+        width: min(100% - 22px, 1180px);
+        padding-top: 14px;
+      }
+
+      .brand-copy span {
+        display: none;
+      }
+
+      .topbar-actions .button-label {
+        display: none;
+      }
+
+      .secondary-btn,
+      .primary-btn {
+        width: 42px;
+        padding: 0;
+      }
+
+      .hero {
+        padding: 21px;
+        border-radius: 19px;
+      }
+
+      .project-title {
+        font-size: 27px;
+      }
+
+      .stats-grid {
+        gap: 10px;
+      }
+
+      .stat-card {
+        align-items: flex-start;
+        padding: 14px;
+      }
+
+      .stat-icon {
+        width: 36px;
+        height: 36px;
+      }
+
+      .stat-copy strong {
+        font-size: 20px;
+      }
+
+      .workspace {
+        padding: 15px;
+        border-radius: 18px;
+      }
+
+      .workspace-heading {
+        align-items: flex-start;
+      }
+
+      .controls {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .filters {
+        width: 100%;
+      }
+
+      .sort-select {
+        width: 100%;
+      }
+
+      .task-main {
+        grid-template-columns: auto minmax(0, 1fr);
+      }
+
+      .task-actions {
+        grid-column: 2;
+        justify-content: flex-end;
+        margin-top: 4px;
+      }
+
+      .task-progress-row {
+        margin-left: 0;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-field.full {
+        grid-column: auto;
+      }
+
+      .modal {
+        padding: 18px;
+      }
+
+      .report-summary {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .report-table {
+        font-size: 10px;
+      }
+
+      .report-table th,
+      .report-table td {
+        padding: 8px 5px;
+      }
+    }
+
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+
+      #reportCard,
+      #reportCard * {
+        visibility: visible !important;
+      }
+
+      #reportCard {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        border: 0;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" id="brandIcon"></div>
+        <div class="brand-copy">
+          <strong>Project Tracker</strong>
+          <span>One project, clear progress</span>
+        </div>
+      </div>
+
+      <div class="topbar-actions">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark mode"></button>
+
+        <button class="secondary-btn" id="shareBtn" type="button">
+          <span id="shareIcon"></span>
+          <span class="button-label">Share Project</span>
+        </button>
+
+        <button class="primary-btn" id="addTaskBtn" type="button">
+          <span id="plusIcon"></span>
+          <span class="button-label">Add Task</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-top">
+        <div>
+          <p class="eyebrow">Current project</p>
+
+          <div id="titleDisplay" class="project-title-row">
+            <h1 class="project-title" id="projectTitle"></h1>
+            <button class="edit-title-btn" id="editTitleBtn" type="button" aria-label="Edit project title"></button>
+          </div>
+
+          <div class="title-editor" id="titleEditor">
+            <input id="titleInput" maxlength="100" aria-label="Project title" />
+            <button class="primary-btn" id="saveTitleBtn" type="button">Save</button>
+            <button class="secondary-btn" id="cancelTitleBtn" type="button">Cancel</button>
+          </div>
+
+          <p class="hero-description">
+            Update each activity as work progresses. The overall completion rate is
+            calculated automatically from all project subtasks.
+          </p>
+        </div>
+
+        <div class="progress-score">
+          <strong id="overallPercent">0%</strong>
+          <span>Complete</span>
+        </div>
+      </div>
+
+      <div class="overall-progress">
+        <div class="progress-label-row">
+          <span>Overall project progress</span>
+          <span id="progressDescription">No tasks created</span>
+        </div>
+        <div
+          class="progress-track"
+          role="progressbar"
+          aria-label="Overall project progress"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          id="overallProgressTrack"
+        >
+          <div class="progress-fill" id="overallProgressFill"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-grid" aria-label="Project statistics">
+      <article class="stat-card">
+        <div class="stat-icon" id="totalIcon"></div>
+        <div class="stat-copy">
+          <strong id="totalTasks">0</strong>
+          <span>Total Tasks</span>
+        </div>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon amber" id="progressIcon"></div>
+        <div class="stat-copy">
+          <strong id="inProgressTasks">0</strong>
+          <span>In Progress</span>
+        </div>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon green" id="completedIcon"></div>
+        <div class="stat-copy">
+          <strong id="completedTasks">0</strong>
+          <span>Completed</span>
+        </div>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon gray" id="remainingIcon"></div>
+        <div class="stat-copy">
+          <strong id="remainingTasks">0</strong>
+          <span>Remaining Tasks</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="workspace">
+      <div class="workspace-heading">
+        <div>
+          <h2>Project Activities</h2>
+          <p>Manage, prioritize, and monitor your project subtasks.</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <nav class="filters" aria-label="Task filters">
+          <button class="filter-btn active" data-filter="all" type="button">All</button>
+          <button class="filter-btn" data-filter="todo" type="button">To Do</button>
+          <button class="filter-btn" data-filter="progress" type="button">In Progress</button>
+          <button class="filter-btn" data-filter="completed" type="button">Completed</button>
+        </nav>
+
+        <select class="sort-select" id="sortSelect" aria-label="Sort tasks">
+          <option value="default">Sort: Recently added</option>
+          <option value="priority">Sort: Priority</option>
+          <option value="dueDate">Sort: Due date</option>
+          <option value="progressDesc">Sort: Highest progress</option>
+          <option value="progressAsc">Sort: Lowest progress</option>
+          <option value="name">Sort: Task name</option>
+        </select>
+      </div>
+
+      <div class="task-list" id="taskList"></div>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="taskModal" aria-hidden="true">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="taskModalTitle">
+      <div class="modal-header">
+        <div>
+          <h2 id="taskModalTitle">Add New Task</h2>
+          <p>Create a project activity and set its initial progress.</p>
+        </div>
+        <button class="close-btn" id="closeTaskModal" type="button" aria-label="Close"></button>
+      </div>
+
+      <form id="taskForm">
+        <input type="hidden" id="editingTaskId" />
+
+        <div class="form-grid">
+          <div class="form-field full">
+            <label for="taskName">Task Name *</label>
+            <input
+              id="taskName"
+              type="text"
+              maxlength="120"
+              placeholder="Example: Review and editing"
+              required
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="taskPriority">Priority</label>
+            <select id="taskPriority">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="taskDueDate">Due Date</label>
+            <input id="taskDueDate" type="date" />
+          </div>
+
+          <div class="form-field full">
+            <label for="taskProgress">Initial Progress</label>
+            <div class="range-field">
+              <div class="range-heading">
+                <span>Task completion</span>
+                <span id="formProgressValue">0%</span>
+              </div>
+              <input
+                id="taskProgress"
+                class="task-slider"
+                type="range"
+                min="0"
+                max="100"
+                step="5"
+                value="0"
+                style="--slider-value: 0%"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="ghost-btn" id="cancelTaskBtn" type="button">Cancel</button>
+          <button class="primary-btn" type="submit" id="submitTaskBtn">Add Task</button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="deleteModal" aria-hidden="true">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+      <div class="modal-header">
+        <div>
+          <h2 id="deleteModalTitle">Delete Task?</h2>
+          <p>This activity will be permanently removed from the project.</p>
+        </div>
+        <button class="close-btn" id="closeDeleteModal" type="button" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-actions">
+        <button class="ghost-btn" id="cancelDeleteBtn" type="button">Cancel</button>
+        <button class="danger-btn" id="confirmDeleteBtn" type="button">Delete Task</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="reportModal" aria-hidden="true">
+    <section class="modal report-modal" role="dialog" aria-modal="true" aria-labelledby="reportModalTitle">
+      <div class="modal-header">
+        <div>
+          <h2 id="reportModalTitle">Read-Only Project Report</h2>
+          <p>
+            This is a snapshot of your current project. Downloading or printing it
+            will not create a live updating link.
+          </p>
+        </div>
+        <button class="close-btn" id="closeReportModal" type="button" aria-label="Close"></button>
+      </div>
+
+      <div class="report-card" id="reportCard"></div>
+
+      <div class="modal-actions">
+        <button class="secondary-btn" id="copyReportBtn" type="button">Copy Summary</button>
+        <button class="primary-btn" id="printReportBtn" type="button">Print / Save PDF</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const STORAGE_KEY = "singleProjectProgressTracker_v1";
+
+      const icons = {
+        logo: `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19V9"></path>
+            <path d="M10 19V5"></path>
+            <path d="M16 19v-7"></path>
+            <path d="M22 19V3"></path>
+          </svg>`,
+        sun: `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41
+              M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"></path>
+          </svg>`,
+        moon: `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3
+              7 7 0 0 0 21 12.79z"></path>
+          </svg>`,
+        share: `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="5" r="3"></circle>
+            <circle cx="6" cy="12" r="3"></circle>
+            <circle cx="18" cy="19" r="3"></circle>
+            <path d="m8.59 13.51 6.83 3.98M15.41 6.51 8.59 10.49"></path>
+          </svg>`,
+        plus: `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12h14"></path>
+          </svg>`,
+        edit: `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"></path>
+            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z"></path>
+          </svg>`,
+        trash: `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"></path>
+            <path d="M10 11v5M14 11v5"></path>
+          </svg>`,
+        close: `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round">
+            <path d="m6 6 12 12M18 6 6 18"></path>
+          </svg>`,
+        calendar: `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+            <path d="M16 3v4M8 3v4M3 11h18"></path>
+          </svg>`,
+        list: `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 6h13M8 12h13M8 18h13"></path>
+            <path d="M3 6h.01M3 12h.01M3 18h.01"></path>
+          </svg>`,
+        clock: `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 7v5l3 2"></path>
+          </svg>`,
+        check: `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="m8.5 12 2.2 2.2 4.8-5"></path>
+          </svg>`,
+        circle: `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <circle cx="12" cy="12" r="9"></circle>
+          </svg>`,
+        inbox: `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16l2 12H2L4 4Z"></path>
+            <path d="M2 16h5l2 3h6l2-3h5"></path>
+          </svg>`
+      };
+
+      const starterTasks = [
+        {
+          id: createId(),
+          name: "Project planning",
+          priority: "high",
+          dueDate: getDateOffset(3),
+          progress: 100,
+          createdAt: Date.now() - 6000
+        },
+        {
+          id: createId(),
+          name: "Prepare action plan",
+          priority: "high",
+          dueDate: getDateOffset(7),
+          progress: 80,
+          createdAt: Date.now() - 5000
+        },
+        {
+          id: createId(),
+          name: "Research and information gathering",
+          priority: "medium",
+          dueDate: getDateOffset(12),
+          progress: 60,
+          createdAt: Date.now() - 4000
+        },
+        {
+          id: createId(),
+          name: "Drafting paper",
+          priority: "medium",
+          dueDate: getDateOffset(18),
+          progress: 35,
+          createdAt: Date.now() - 3000
+        },
+        {
+          id: createId(),
+          name: "Review and editing",
+          priority: "low",
+          dueDate: getDateOffset(23),
+          progress: 0,
+          createdAt: Date.now() - 2000
+        },
+        {
+          id: createId(),
+          name: "Final submission",
+          priority: "high",
+          dueDate: getDateOffset(28),
+          progress: 0,
+          createdAt: Date.now() - 1000
+        }
+      ];
+
+      let state = loadState();
+      let activeFilter = "all";
+      let taskToDelete = null;
+
+      const elements = {
+        projectTitle: document.getElementById("projectTitle"),
+        titleDisplay: document.getElementById("titleDisplay"),
+        titleEditor: document.getElementById("titleEditor"),
+        titleInput: document.getElementById("titleInput"),
+        editTitleBtn: document.getElementById("editTitleBtn"),
+        saveTitleBtn: document.getElementById("saveTitleBtn"),
+        cancelTitleBtn: document.getElementById("cancelTitleBtn"),
+        overallPercent: document.getElementById("overallPercent"),
+        progressDescription: document.getElementById("progressDescription"),
+        overallProgressFill: document.getElementById("overallProgressFill"),
+        overallProgressTrack: document.getElementById("overallProgressTrack"),
+        totalTasks: document.getElementById("totalTasks"),
+        inProgressTasks: document.getElementById("inProgressTasks"),
+        completedTasks: document.getElementById("completedTasks"),
+        remainingTasks: document.getElementById("remainingTasks"),
+        taskList: document.getElementById("taskList"),
+        sortSelect: document.getElementById("sortSelect"),
+        themeToggle: document.getElementById("themeToggle"),
+        taskModal: document.getElementById("taskModal"),
+        taskForm: document.getElementById("taskForm"),
+        taskModalTitle: document.getElementById("taskModalTitle"),
+        taskName: document.getElementById("taskName"),
+        taskPriority: document.getElementById("taskPriority"),
+        taskDueDate: document.getElementById("taskDueDate"),
+        taskProgress: document.getElementById("taskProgress"),
+        formProgressValue: document.getElementById("formProgressValue"),
+        editingTaskId: document.getElementById("editingTaskId"),
+        submitTaskBtn: document.getElementById("submitTaskBtn"),
+        deleteModal: document.getElementById("deleteModal"),
+        reportModal: document.getElementById("reportModal"),
+        reportCard: document.getElementById("reportCard"),
+        toastContainer: document.getElementById("toastContainer")
+      };
+
+      injectIcons();
+      applyTheme();
+      bindEvents();
+      render();
+
+      function loadState() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+
+          if (
+            saved &&
+            typeof saved.projectTitle === "string" &&
+            Array.isArray(saved.tasks)
+          ) {
+            return {
+              projectTitle: saved.projectTitle,
+              tasks: saved.tasks.map((task) => ({
+                ...task,
+                progress: normalizeProgress(task.progress)
+              })),
+              theme: saved.theme === "dark" ? "dark" : "light"
+            };
+          }
+        } catch (error) {
+          console.warn("Could not load saved project:", error);
+        }
+
+        return {
+          projectTitle: "Credit Risk Grading Policy",
+          tasks: starterTasks,
+          theme: window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light"
+        };
+      }
+
+      function saveState() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      }
+
+      function injectIcons() {
+        document.getElementById("brandIcon").innerHTML = icons.logo;
+        document.getElementById("shareIcon").innerHTML = icons.share;
+        document.getElementById("plusIcon").innerHTML = icons.plus;
+        document.getElementById("editTitleBtn").innerHTML = icons.edit;
+        document.getElementById("totalIcon").innerHTML = icons.list;
+        document.getElementById("progressIcon").innerHTML = icons.clock;
+        document.getElementById("completedIcon").innerHTML = icons.check;
+        document.getElementById("remainingIcon").innerHTML = icons.circle;
+
+        document.querySelectorAll(".close-btn").forEach((button) => {
+          button.innerHTML = icons.close;
+        });
+      }
+
+      function bindEvents() {
+        document.getElementById("addTaskBtn").addEventListener("click", () => {
+          openTaskModal();
+        });
+
+        document.getElementById("closeTaskModal").addEventListener("click", closeTaskModal);
+        document.getElementById("cancelTaskBtn").addEventListener("click", closeTaskModal);
+        document.getElementById("shareBtn").addEventListener("click", openReport);
+        document.getElementById("closeReportModal").addEventListener("click", () => {
+          closeModal(elements.reportModal);
+        });
+
+        document.getElementById("printReportBtn").addEventListener("click", () => {
+          window.print();
+        });
+
+        document.getElementById("copyReportBtn").addEventListener("click", copyReport);
+        document.getElementById("closeDeleteModal").addEventListener("click", closeDeleteModal);
+        document.getElementById("cancelDeleteBtn").addEventListener("click", closeDeleteModal);
+        document.getElementById("confirmDeleteBtn").addEventListener("click", confirmDelete);
+        document.getElementById("themeToggle").addEventListener("click", toggleTheme);
+
+        elements.editTitleBtn.addEventListener("click", startTitleEditing);
+        elements.saveTitleBtn.addEventListener("click", saveProjectTitle);
+        elements.cancelTitleBtn.addEventListener("click", cancelTitleEditing);
+
+        elements.titleInput.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") saveProjectTitle();
+          if (event.key === "Escape") cancelTitleEditing();
+        });
+
+        elements.taskProgress.addEventListener("input", () => {
+          const value = normalizeProgress(elements.taskProgress.value);
+          elements.formProgressValue.textContent = `${value}%`;
+          elements.taskProgress.style.setProperty("--slider-value", `${value}%`);
+        });
+
+        elements.taskForm.addEventListener("submit", saveTask);
+
+        elements.sortSelect.addEventListener("change", renderTasks);
+
+        document.querySelectorAll(".filter-btn").forEach((button) => {
+          button.addEventListener("click", () => {
+            activeFilter = button.dataset.filter;
+
+            document.querySelectorAll(".filter-btn").forEach((item) => {
+              item.classList.toggle("active", item === button);
+            });
+
+            renderTasks();
+          });
+        });
+
+        [elements.taskModal, elements.deleteModal, elements.reportModal].forEach((modal) => {
+          modal.addEventListener("mousedown", (event) => {
+            if (event.target === modal) closeModal(modal);
+          });
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            document.querySelectorAll(".modal-backdrop.open").forEach(closeModal);
+          }
+        });
+      }
+
+      function render() {
+        renderHeader();
+        renderStats();
+        renderTasks();
+        saveState();
+      }
+
+      function renderHeader() {
+        const progress = calculateOverallProgress();
+
+        elements.projectTitle.textContent = state.projectTitle;
+        elements.overallPercent.textContent = `${progress}%`;
+        elements.overallProgressFill.style.width = `${progress}%`;
+        elements.overallProgressTrack.setAttribute("aria-valuenow", String(progress));
+
+        const completedCount = state.tasks.filter((task) => task.progress === 100).length;
+
+        elements.progressDescription.textContent = state.tasks.length
+          ? `${completedCount} of ${state.tasks.length} tasks completed`
+          : "No tasks created";
+      }
+
+      function renderStats() {
+        const total = state.tasks.length;
+        const inProgress = state.tasks.filter(
+          (task) => task.progress > 0 && task.progress < 100
+        ).length;
+        const completed = state.tasks.filter((task) => task.progress === 100).length;
+        const remaining = state.tasks.filter((task) => task.progress < 100).length;
+
+        elements.totalTasks.textContent = total;
+        elements.inProgressTasks.textContent = inProgress;
+        elements.completedTasks.textContent = completed;
+        elements.remainingTasks.textContent = remaining;
+      }
+
+      function renderTasks() {
+        const tasks = sortTasks(filterTasks(state.tasks));
+
+        if (!tasks.length) {
+          const message =
+            state.tasks.length === 0
+              ? "Add your first task to begin tracking project progress."
+              : "No tasks match the selected filter.";
+
+          elements.taskList.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-icon">${icons.inbox}</div>
+              <h3>No activities found</h3>
+              <p>${message}</p>
+            </div>`;
+          return;
+        }
+
+        elements.taskList.innerHTML = tasks.map(createTaskMarkup).join("");
+
+        elements.taskList.querySelectorAll(".task-check").forEach((checkbox) => {
+          checkbox.addEventListener("change", () => {
+            toggleTaskComplete(checkbox.dataset.id, checkbox.checked);
+          });
+        });
+
+        elements.taskList.querySelectorAll(".task-slider").forEach((slider) => {
+          slider.addEventListener("input", () => {
+            updateTaskProgress(slider.dataset.id, slider.value, false);
+            slider.style.setProperty("--slider-value", `${slider.value}%`);
+
+            const output = slider
+              .closest(".task-progress-row")
+              .querySelector(".task-progress-value");
+
+            output.textContent = `${slider.value}%`;
+          });
+
+          slider.addEventListener("change", () => {
+            updateTaskProgress(slider.dataset.id, slider.value, true);
+          });
+        });
+
+        elements.taskList.querySelectorAll("[data-action='edit']").forEach((button) => {
+          button.addEventListener("click", () => openTaskModal(button.dataset.id));
+        });
+
+        elements.taskList.querySelectorAll("[data-action='delete']").forEach((button) => {
+          button.addEventListener("click", () => openDeleteModal(button.dataset.id));
+        });
+      }
+
+      function createTaskMarkup(task) {
+        const completed = task.progress === 100;
+        const status = getStatus(task);
+        const formattedDate = task.dueDate ? formatDate(task.dueDate) : "No due date";
+        const overdue =
+          task.dueDate &&
+          !completed &&
+          new Date(`${task.dueDate}T23:59:59`) < new Date();
+
+        return `
+          <article class="task-card ${completed ? "completed" : ""}">
+            <div class="task-main">
+              <input
+                class="task-check"
+                type="checkbox"
+                data-id="${escapeHtml(task.id)}"
+                ${completed ? "checked" : ""}
+                aria-label="Mark ${escapeHtml(task.name)} as completed"
+              />
+
+              <div>
+                <h3 class="task-name">${escapeHtml(task.name)}</h3>
+
+                <div class="task-meta">
+                  <span class="tag ${escapeHtml(task.priority)}">
+                    ${capitalize(task.priority)} Priority
+                  </span>
+
+                  <span class="due-date ${overdue ? "overdue" : ""}">
+                    ${icons.calendar}
+                    ${overdue ? "Overdue: " : ""}${escapeHtml(formattedDate)}
+                  </span>
+
+                  <span class="status-label">
+                    ${status === "Completed" ? icons.check : icons.clock}
+                    ${status}
+                  </span>
+                </div>
+              </div>
+
+              <div class="task-actions">
+                <button
+                  class="action-btn"
+                  type="button"
+                  data-action="edit"
+                  data-id="${escapeHtml(task.id)}"
+                  aria-label="Edit ${escapeHtml(task.name)}"
+                  title="Edit task"
+                >
+                  ${icons.edit}
+                </button>
+
+                <button
+                  class="action-btn delete"
+                  type="button"
+                  data-action="delete"
+                  data-id="${escapeHtml(task.id)}"
+                  aria-label="Delete ${escapeHtml(task.name)}"
+                  title="Delete task"
+                >
+                  ${icons.trash}
+                </button>
+              </div>
+            </div>
+
+            <div class="task-progress-row">
+              <input
+                class="task-slider"
+                type="range"
+                min="0"
+                max="100"
+                step="5"
+                value="${task.progress}"
+                data-id="${escapeHtml(task.id)}"
+                aria-label="${escapeHtml(task.name)} progress"
+                style="--slider-value: ${task.progress}%"
+              />
+              <output class="task-progress-value">${task.progress}%</output>
+            </div>
+          </article>`;
+      }
+
+      function filterTasks(tasks) {
+        return tasks.filter((task) => {
+          if (activeFilter === "todo") return task.progress === 0;
+          if (activeFilter === "progress") return task.progress > 0 && task.progress < 100;
+          if (activeFilter === "completed") return task.progress === 100;
+          return true;
+        });
+      }
+
+      function sortTasks(tasks) {
+        const sorted = [...tasks];
+        const sortMode = elements.sortSelect.value;
+        const priorityWeight = { high: 3, medium: 2, low: 1 };
+
+        sorted.sort((a, b) => {
+          if (sortMode === "priority") {
+            return priorityWeight[b.priority] - priorityWeight[a.priority];
+          }
+
+          if (sortMode === "dueDate") {
+            if (!a.dueDate && !b.dueDate) return 0;
+            if (!a.dueDate) return 1;
+            if (!b.dueDate) return -1;
+            return a.dueDate.localeCompare(b.dueDate);
+          }
+
+          if (sortMode === "progressDesc") return b.progress - a.progress;
+          if (sortMode === "progressAsc") return a.progress - b.progress;
+
+          if (sortMode === "name") {
+            return a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
+          }
+
+          return (b.createdAt || 0) - (a.createdAt || 0);
+        });
+
+        return sorted;
+      }
+
+      function openTaskModal(taskId = null) {
+        elements.taskForm.reset();
+        elements.editingTaskId.value = "";
+        elements.taskProgress.value = "0";
+        elements.taskProgress.style.setProperty("--slider-value", "0%");
+        elements.formProgressValue.textContent = "0%";
+        elements.taskPriority.value = "medium";
+
+        if (taskId) {
+          const task = state.tasks.find((item) => item.id === taskId);
+          if (!task) return;
+
+          elements.taskModalTitle.textContent = "Edit Task";
+          elements.submitTaskBtn.textContent = "Save Changes";
+          elements.editingTaskId.value = task.id;
+          elements.taskName.value = task.name;
+          elements.taskPriority.value = task.priority;
+          elements.taskDueDate.value = task.dueDate || "";
+          elements.taskProgress.value = task.progress;
+          elements.taskProgress.style.setProperty(
+            "--slider-value",
+            `${task.progress}%`
+          );
+          elements.formProgressValue.textContent = `${task.progress}%`;
+        } else {
+          elements.taskModalTitle.textContent = "Add New Task";
+          elements.submitTaskBtn.textContent = "Add Task";
+        }
+
+        openModal(elements.taskModal);
+        setTimeout(() => elements.taskName.focus(), 50);
+      }
+
+      function closeTaskModal() {
+        closeModal(elements.taskModal);
+      }
+
+      function saveTask(event) {
+        event.preventDefault();
+
+        const name = elements.taskName.value.trim();
+        const progress = normalizeProgress(elements.taskProgress.value);
+        const editingId = elements.editingTaskId.value;
+
+        if (!name) {
+          showToast("Please enter a task name.", "error");
+          elements.taskName.focus();
+          return;
+        }
+
+        if (editingId) {
+          const task = state.tasks.find((item) => item.id === editingId);
+
+          if (task) {
+            task.name = name;
+            task.priority = elements.taskPriority.value;
+            task.dueDate = elements.taskDueDate.value;
+            task.progress = progress;
+          }
+
+          showToast("Task updated successfully.", "success");
+        } else {
+          state.tasks.push({
+            id: createId(),
+            name,
+            priority: elements.taskPriority.value,
+            dueDate: elements.taskDueDate.value,
+            progress,
+            createdAt: Date.now()
+          });
+
+          showToast("Task added successfully.", "success");
+        }
+
+        closeTaskModal();
+        render();
+      }
+
+      function toggleTaskComplete(taskId, checked) {
+        const task = state.tasks.find((item) => item.id === taskId);
+        if (!task) return;
+
+        task.progress = checked ? 100 : 0;
+        render();
+
+        showToast(
+          checked ? "Task marked as completed." : "Task moved back to To Do.",
+          "success"
+        );
+      }
+
+      function updateTaskProgress(taskId, value, shouldRender) {
+        const task = state.tasks.find((item) => item.id === taskId);
+        if (!task) return;
+
+        task.progress = normalizeProgress(value);
+        renderHeader();
+        renderStats();
+        saveState();
+
+        if (shouldRender) {
+          renderTasks();
+          showToast("Progress saved.", "success");
+        }
+      }
+
+      function openDeleteModal(taskId) {
+        taskToDelete = taskId;
+        openModal(elements.deleteModal);
+      }
+
+      function closeDeleteModal() {
+        taskToDelete = null;
+        closeModal(elements.deleteModal);
+      }
+
+      function confirmDelete() {
+        if (!taskToDelete) return;
+
+        state.tasks = state.tasks.filter((task) => task.id !== taskToDelete);
+        closeDeleteModal();
+        render();
+        showToast("Task deleted.", "success");
+      }
+
+      function startTitleEditing() {
+        elements.titleInput.value = state.projectTitle;
+        elements.titleDisplay.style.display = "none";
+        elements.titleEditor.classList.add("active");
+        elements.titleInput.focus();
+        elements.titleInput.select();
+      }
+
+      function saveProjectTitle() {
+        const title = elements.titleInput.value.trim();
+
+        if (!title) {
+          showToast("Project title cannot be empty.", "error");
+          elements.titleInput.focus();
+          return;
+        }
+
+        state.projectTitle = title;
+        cancelTitleEditing();
+        render();
+        showToast("Project title updated.", "success");
+      }
+
+      function cancelTitleEditing() {
+        elements.titleEditor.classList.remove("active");
+        elements.titleDisplay.style.display = "flex";
+      }
+
+      function calculateOverallProgress() {
+        if (!state.tasks.length) return 0;
+
+        const totalProgress = state.tasks.reduce(
+          (sum, task) => sum + normalizeProgress(task.progress),
+          0
+        );
+
+        return Math.round(totalProgress / state.tasks.length);
+      }
+
+      function toggleTheme() {
+        state.theme = state.theme === "dark" ? "light" : "dark";
+        applyTheme();
+        saveState();
+      }
+
+      function applyTheme() {
+        document.body.classList.toggle("dark", state.theme === "dark");
+        elements.themeToggle.innerHTML =
+          state.theme === "dark" ? icons.sun : icons.moon;
+        elements.themeToggle.setAttribute(
+          "aria-label",
+          state.theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
+        );
+      }
+
+      function openReport() {
+        const overall = calculateOverallProgress();
+        const total = state.tasks.length;
+        const completed = state.tasks.filter((task) => task.progress === 100).length;
+        const inProgress = state.tasks.filter(
+          (task) => task.progress > 0 && task.progress < 100
+        ).length;
+        const remaining = state.tasks.filter((task) => task.progress < 100).length;
+
+        const rows = sortTasksForReport(state.tasks)
+          .map(
+            (task) => `
+              <tr>
+                <td>${escapeHtml(task.name)}</td>
+                <td>${capitalize(task.priority)}</td>
+                <td>${task.dueDate ? escapeHtml(formatDate(task.dueDate)) : "Not set"}</td>
+                <td>${getStatus(task)}</td>
+                <td><strong>${task.progress}%</strong></td>
+              </tr>`
+          )
+          .join("");
+
+        elements.reportCard.innerHTML = `
+          <div class="report-header">
+            <small>Project Progress Report</small>
+            <h2>${escapeHtml(state.projectTitle)}</h2>
+            <p>Snapshot generated on ${escapeHtml(formatDateTime(new Date()))}</p>
+          </div>
+
+          <div class="report-summary">
+            <div class="report-stat">
+              <strong>${overall}%</strong>
+              <span>Overall</span>
+            </div>
+            <div class="report-stat">
+              <strong>${total}</strong>
+              <span>Total Tasks</span>
+            </div>
+            <div class="report-stat">
+              <strong>${inProgress}</strong>
+              <span>In Progress</span>
+            </div>
+            <div class="report-stat">
+              <strong>${completed}</strong>
+              <span>Completed</span>
+            </div>
+          </div>
+
+          <div class="report-progress">
+            <div style="width: ${overall}%"></div>
+          </div>
+
+          ${
+            total
+              ? `
+                <table class="report-table">
+                  <thead>
+                    <tr>
+                      <th>Activity</th>
+                      <th>Priority</th>
+                      <th>Due Date</th>
+                      <th>Status</th>
+                      <th>Progress</th>
+                    </tr>
+                  </thead>
+                  <tbody>${rows}</tbody>
+                </table>`
+              : "<p>No project activities have been added.</p>"
+          }
+
+          <div class="report-footer">
+            ${remaining} task${remaining === 1 ? "" : "s"} remaining.
+            This report is a read-only snapshot and does not update automatically.
+          </div>`;
+
+        openModal(elements.reportModal);
+      }
+
+      async function copyReport() {
+        const overall = calculateOverallProgress();
+        const completed = state.tasks.filter((task) => task.progress === 100).length;
+        const inProgress = state.tasks.filter(
+          (task) => task.progress > 0 && task.progress < 100
+        ).length;
+
+        const taskLines = sortTasksForReport(state.tasks)
+          .map(
+            (task, index) =>
+              `${index + 1}. ${task.name} - ${task.progress}% - ${getStatus(task)}`
+          )
+          .join("\n");
+
+        const reportText = [
+          "PROJECT PROGRESS REPORT",
+          state.projectTitle,
+          "",
+          `Overall completion: ${overall}%`,
+          `Total tasks: ${state.tasks.length}`,
+          `In progress: ${inProgress}`,
+          `Completed: ${completed}`,
+          "",
+          "PROJECT ACTIVITIES",
+          taskLines || "No activities added.",
+          "",
+          `Snapshot generated: ${formatDateTime(new Date())}`
+        ].join("\n");
+
+        try {
+          await navigator.clipboard.writeText(reportText);
+          showToast("Report summary copied.", "success");
+        } catch (error) {
+          const textarea = document.createElement("textarea");
+          textarea.value = reportText;
+          textarea.style.position = "fixed";
+          textarea.style.opacity = "0";
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand("copy");
+          textarea.remove();
+          showToast("Report summary copied.", "success");
+        }
+      }
+
+      function sortTasksForReport(tasks) {
+        return [...tasks].sort((a, b) => {
+          if (a.progress === 100 && b.progress !== 100) return 1;
+          if (a.progress !== 100 && b.progress === 100) return -1;
+          return (a.createdAt || 0) - (b.createdAt || 0);
+        });
+      }
+
+      function getStatus(task) {
+        if (task.progress === 100) return "Completed";
+        if (task.progress > 0) return "In Progress";
+        return "To Do";
+      }
+
+      function openModal(modal) {
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal(modal) {
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
+
+        if (!document.querySelector(".modal-backdrop.open")) {
+          document.body.style.overflow = "";
+        }
+
+        if (modal === elements.deleteModal) {
+          taskToDelete = null;
+        }
+      }
+
+      function showToast(message, type = "") {
+        const toast = document.createElement("div");
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+        elements.toastContainer.appendChild(toast);
+
+        setTimeout(() => {
+          toast.style.opacity = "0";
+          toast.style.transform = "translateY(8px)";
+          toast.style.transition = "0.2s ease";
+
+          setTimeout(() => toast.remove(), 220);
+        }, 2600);
+      }
+
+      function normalizeProgress(value) {
+        return Math.max(0, Math.min(100, Math.round(Number(value) || 0)));
+      }
+
+      function createId() {
+        return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 9)}`;
+      }
+
+      function getDateOffset(days) {
+        const date = new Date();
+        date.setDate(date.getDate() + days);
+        return date.toISOString().slice(0, 10);
+      }
+
+      function formatDate(dateString) {
+        const date = new Date(`${dateString}T00:00:00`);
+
+        return new Intl.DateTimeFormat(undefined, {
+          day: "numeric",
+          month: "short",
+          year: "numeric"
+        }).format(date);
+      }
+
+      function formatDateTime(date) {
+        return new Intl.DateTimeFormat(undefined, {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit"
+        }).format(date);
+      }
+
+      function capitalize(value) {
+        return value.charAt(0).toUpperCase() + value.slice(1);
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+    })();
+  </script>
+</body>
+</html>
