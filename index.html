@@ -3,21 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
 <title>Project Progress Tracker</title>
 
 <style>
 :root {
   --bg:#f5f7fb;
   --card:#ffffff;
-  --soft:#f0f3f8;
+  --soft:#f3f5f9;
   --text:#172033;
   --muted:#687386;
   --line:#e2e7ef;
+
   --primary:#5b5ce2;
+
   --green:#159b63;
   --amber:#d97706;
   --red:#dc3545;
   --todo:#64748b;
+
   --shadow:0 10px 30px rgba(15,23,42,.07);
 }
 
@@ -28,11 +33,13 @@ body.dark {
   --text:#edf2f7;
   --muted:#9aa6b8;
   --line:#2a3341;
+
   --primary:#8182ff;
+
   --green:#36c98a;
   --amber:#f4ad45;
   --red:#ff6b78;
-  --todo:#77859a;
+  --todo:#8996a9;
 }
 
 * {
@@ -43,7 +50,12 @@ body {
   margin:0;
   background:var(--bg);
   color:var(--text);
-  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
 }
 
 button,
@@ -60,16 +72,29 @@ button {
   display:none !important;
 }
 
+/* =========================
+   APP
+========================= */
+
 .app {
-  width:min(1120px,calc(100% - 28px));
+  width:min(
+    1050px,
+    calc(100% - 28px)
+  );
+
   margin:auto;
-  padding:24px 0 50px;
+
+  padding:
+    22px
+    0
+    45px;
 }
 
-.topbar,
-.hero-top,
-.workspace-head,
-.task-top {
+/* =========================
+   TOP BAR
+========================= */
+
+.topbar {
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -77,2788 +102,507 @@ button {
 }
 
 .brand {
-  font-size:18px;
+  font-size:17px;
   font-weight:850;
 }
 
 .brand small {
   display:block;
-  margin-top:3px;
+
+  margin-top:2px;
+
   color:var(--muted);
-  font-size:12px;
+
+  font-size:11px;
   font-weight:500;
 }
 
-.actions,
-.task-actions {
+.actions {
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
+  gap:7px;
 }
 
 .btn,
 .icon-btn,
 .mini {
-  min-height:40px;
-  padding:0 14px;
+  min-height:36px;
+
+  padding:
+    0
+    12px;
+
   color:var(--text);
+
   background:var(--card);
-  border:1px solid var(--line);
-  border-radius:10px;
+
+  border:
+    1px
+    solid
+    var(--line);
+
+  border-radius:9px;
+
   font-weight:750;
-}
-
-.icon-btn {
-  width:42px;
-  padding:0;
-}
-
-.mini {
-  min-height:34px;
-  padding:0 10px;
-  color:var(--muted);
 }
 
 .btn.primary {
   color:white;
+
   background:var(--primary);
+
   border-color:var(--primary);
 }
+
+.icon-btn {
+  width:38px;
+  padding:0;
+}
+
+.mini {
+  min-height:31px;
+
+  padding:
+    0
+    10px;
+
+  color:var(--muted);
+
+  font-size:12px;
+}
+
+.mini:hover {
+  color:var(--text);
+
+  border-color:var(--primary);
+}
+
+/* =========================
+   HERO
+========================= */
 
 .hero,
 .workspace,
 .stat {
   background:var(--card);
-  border:1px solid var(--line);
+
+  border:
+    1px
+    solid
+    var(--line);
+
   box-shadow:var(--shadow);
 }
 
-/* HERO */
-
 .hero {
-  margin-top:20px;
-  padding:30px;
-  border-radius:22px;
+  margin-top:18px;
+
+  padding:25px;
+
+  border-radius:18px;
+}
+
+.hero-top {
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:16px;
 }
 
 .eyebrow {
-  margin:0 0 8px;
+  margin:
+    0
+    0
+    6px;
+
   color:var(--primary);
-  font-size:12px;
+
+  font-size:11px;
+
   font-weight:850;
+
   letter-spacing:.12em;
+
   text-transform:uppercase;
 }
 
 .title-line {
   display:flex;
+
   align-items:center;
+
   flex-wrap:wrap;
-  gap:8px;
+
+  gap:7px;
 }
 
 .title-line h1 {
   margin:0;
-  font-size:clamp(27px,4vw,42px);
+
+  font-size:
+    clamp(
+      25px,
+      4vw,
+      38px
+    );
+
+  letter-spacing:-.03em;
 }
 
 .subtitle {
-  max-width:680px;
+  max-width:650px;
+
+  margin:
+    8px
+    0
+    12px;
+
   color:var(--muted);
-  line-height:1.6;
+
+  font-size:13px;
+
+  line-height:1.5;
+}
+
+.viewer-badge {
+  display:inline-block;
+
+  padding:
+    6px
+    9px;
+
+  color:var(--green);
+
+  background:
+    rgba(
+      21,
+      155,
+      99,
+      .12
+    );
+
+  border-radius:999px;
+
+  font-size:11px;
+
+  font-weight:800;
 }
 
 .score {
-  min-width:140px;
-  padding:16px;
+  min-width:125px;
+
+  padding:13px;
+
   text-align:center;
+
   background:var(--soft);
-  border-radius:16px;
+
+  border-radius:13px;
 }
 
 .score strong {
   display:block;
+
   color:var(--primary);
-  font-size:30px;
+
+  font-size:27px;
 }
 
 .score span {
   color:var(--muted);
-  font-size:12px;
+
+  font-size:11px;
 }
 
-/* DISPLAY-ONLY PROJECT PROGRESS */
+/* PROJECT PROGRESS DISPLAY */
 
 .bar {
-  height:14px;
-  margin-top:24px;
+  height:10px;
+
+  margin-top:20px;
+
   overflow:hidden;
+
   background:var(--soft);
-  border:1px solid var(--line);
+
+  border:
+    1px
+    solid
+    var(--line);
+
   border-radius:999px;
 }
 
 .bar > div {
   width:0;
+
   height:100%;
-  background:linear-gradient(90deg,#4f51df,#7187ff);
-  transition:width .3s;
+
+  background:
+    linear-gradient(
+      90deg,
+      #4f51df,
+      #7187ff
+    );
+
+  transition:
+    width
+    .3s;
 }
 
 .status {
-  margin-top:12px;
+  margin-top:9px;
+
   color:var(--muted);
-  font-size:12px;
+
+  font-size:10px;
 }
 
 .status.error {
   color:var(--red);
 }
 
-.viewer-badge {
-  display:inline-block;
-  padding:7px 10px;
-  color:var(--green);
-  background:rgba(21,155,99,.12);
-  border-radius:999px;
-  font-size:12px;
-  font-weight:800;
-}
-
-/* STATISTICS */
+/* =========================
+   STATS
+========================= */
 
 .stats {
   display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:13px;
-  margin-top:16px;
+
+  grid-template-columns:
+    repeat(
+      4,
+      1fr
+    );
+
+  gap:10px;
+
+  margin-top:12px;
 }
 
 .stat {
-  padding:17px;
-  border-radius:16px;
+  padding:13px;
+
+  border-radius:13px;
 }
 
 .stat strong {
   display:block;
-  font-size:25px;
+
+  font-size:21px;
 }
 
 .stat span {
   color:var(--muted);
-  font-size:12px;
+
+  font-size:11px;
 }
 
-/* WORKSPACE */
+/* =========================
+   WORKSPACE
+========================= */
 
 .workspace {
-  margin-top:16px;
-  padding:21px;
-  border-radius:21px;
+  margin-top:12px;
+
+  padding:17px;
+
+  border-radius:17px;
+}
+
+.workspace-head {
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:12px;
 }
 
 .workspace h2 {
   margin:0;
-  font-size:20px;
+
+  font-size:18px;
 }
 
 .workspace p {
+  margin:
+    4px
+    0
+    0;
+
   color:var(--muted);
-  font-size:12px;
+
+  font-size:11px;
 }
 
-/* FILTER BUTTONS - NO SCROLL */
+/* =========================
+   FILTER
+========================= */
 
 .filters {
   display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:7px;
-  padding:5px;
-  margin:18px 0;
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(0,1fr)
+    );
+
+  gap:5px;
+
+  padding:4px;
+
+  margin:
+    14px
+    0;
+
   background:var(--soft);
-  border-radius:12px;
+
+  border-radius:10px;
 }
 
 .filter {
-  min-height:40px;
-  padding:0 12px;
+  min-height:35px;
+
+  padding:
+    0
+    10px;
+
   color:var(--muted);
+
   background:transparent;
+
   border:0;
-  border-radius:8px;
+
+  border-radius:7px;
+
+  font-size:12px;
+
   font-weight:750;
 }
 
 .filter.active {
   color:var(--text);
+
   background:var(--card);
-  box-shadow:0 2px 8px rgba(0,0,0,.07);
+
+  box-shadow:
+    0
+    2px
+    7px
+    rgba(0,0,0,.06);
 }
 
-/* TASKS */
+/* =========================
+   TASK LIST
+========================= */
 
 .tasks {
   display:grid;
-  gap:12px;
+
+  gap:7px;
 }
 
+/* COMPACT CARD */
+
 .task {
-  padding:17px;
-  border:1px solid var(--line);
-  border-radius:15px;
+  position:relative;
+
+  display:grid;
+
+  grid-template-columns:
+    34px
+    minmax(0,1fr)
+    auto;
+
+  align-items:center;
+
+  gap:10px;
+
+  min-height:68px;
+
+  padding:
+    10px
+    12px;
+
+  background:var(--card);
+
+  border:
+    1px
+    solid
+    var(--line);
+
+  border-radius:11px;
+
+  transition:
+    border-color
+    .2s,
+    background
+    .2s;
+}
+
+.task:hover {
+  border-color:
+    color-mix(
+      in srgb,
+      var(--primary) 45%,
+      var(--line)
+    );
 }
 
 .task.done {
-  background:rgba(21,155,99,.08);
-  border-color:rgba(21,155,99,.25);
+  background:
+    rgba(
+      21,
+      155,
+      99,
+      .05
+    );
+
+  border-color:
+    rgba(
+      21,
+      155,
+      99,
+      .25
+    );
 }
 
-.task.in-progress {
-  border-color:rgba(217,119,6,.30);
-}
+/* LEFT STATUS ICON */
 
-.task-top {
-  align-items:flex-start;
-}
+.task-icon {
+  width:28px;
+  height:28px;
 
-.task-body {
-  flex:1;
-  min-width:0;
-}
-
-.task-name {
-  font-weight:800;
-  overflow-wrap:anywhere;
-}
-
-.task.done .task-name {
-  color:var(--muted);
-  text-decoration:line-through;
-}
-
-.meta {
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:7px;
-  color:var(--muted);
-  font-size:12px;
-}
-
-.tag {
-  padding:4px 8px;
-  border-radius:999px;
-  font-weight:800;
-}
-
-.tag.low {
-  color:var(--green);
-  background:rgba(21,155,99,.12);
-}
-
-.tag.medium {
-  color:var(--amber);
-  background:rgba(217,119,6,.12);
-}
-
-.tag.high {
-  color:var(--red);
-  background:rgba(220,53,69,.12);
-}
-
-/* STATUS BUTTONS */
-
-.status-buttons,
-.form-status-buttons {
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:8px;
-  margin-top:15px;
-}
 
-.status-btn,
-.form-status-btn {
-  min-height:43px;
-  padding:8px;
-  color:var(--muted);
+  place-items:center;
+
+  color:var(--todo);
+
   background:var(--soft);
-  border:1px solid var(--line);
-  border-radius:10px;
-  font-weight:800;
-  transition:.15s;
+
+  border:
+    2px
+    solid
+    var(--todo);
+
+  border-radius:50%;
+
+  font-size:13px;
+
+  font-weight:900;
 }
 
-.status-btn:hover:not(:disabled),
-.form-status-btn:hover {
-  transform:translateY(-1px);
-}
+.task.in-progress .task-icon {
+  color:var(--amber);
 
-.status-btn.active,
-.form-status-btn.active {
-  color:white;
-}
-
-/* TO DO */
-
-.status-btn.todo.active,
-.form-status-btn.todo.active {
-  background:var(--todo);
-  border-color:var(--todo);
-}
-
-/* IN PROGRESS */
-
-.status-btn.progress.active,
-.form-status-btn.progress.active {
-  background:var(--amber);
   border-color:var(--amber);
 }
 
-/* COMPLETED */
-
-.status-btn.completed.active,
-.form-status-btn.completed.active {
-  background:var(--green);
-  border-color:var(--green);
-}
-
-.status-btn:disabled {
-  cursor:default;
-}
-
-.status-btn:disabled:not(.active) {
-  opacity:.45;
-}
-
-.empty {
-  padding:45px;
-  color:var(--muted);
-  text-align:center;
-  background:var(--soft);
-  border-radius:14px;
-}
-
-/* MODALS */
-
-.modal-bg {
-  position:fixed;
-  inset:0;
-  z-index:20;
-  display:none;
-  place-items:center;
-  padding:18px;
-  background:rgba(7,11,20,.62);
-}
-
-.modal-bg.open {
-  display:grid;
-}
-
-.modal {
-  width:min(500px,100%);
-  max-height:calc(100vh - 36px);
-  padding:22px;
-  overflow:auto;
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:20px;
-}
-
-.modal h2 {
-  margin:0;
-}
-
-.field {
-  margin-top:14px;
-}
-
-.field label {
-  display:block;
-  margin-bottom:6px;
-  font-size:12px;
-  font-weight:800;
-}
-
-.field input,
-.field select,
-.title-input {
-  width:100%;
-  min-height:44px;
-  padding:0 12px;
-  color:var(--text);
-  background:var(--soft);
-  border:1px solid var(--line);
-  border-radius:10px;
-}
-
-.modal-actions {
-  display:flex;
-  justify-content:flex-end;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-top:20px;
-}
-
-/* NOTIFICATION */
-
-.toast {
-  position:fixed;
-  right:18px;
-  bottom:18px;
-  z-index:30;
-  max-width:340px;
-  padding:12px 14px;
-  background:var(--card);
-  border:1px solid var(--line);
-  border-left:4px solid var(--primary);
-  border-radius:11px;
-  box-shadow:var(--shadow);
-}
-
-/* MOBILE */
-
-@media(max-width:700px) {
-
-  .stats {
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .hero-top,
-  .workspace-head,
-  .topbar {
-    align-items:flex-start;
-    flex-direction:column;
-  }
-
-  .score {
-    width:100%;
-  }
-
-  .filters {
-    grid-template-columns:repeat(2,minmax(0,1fr));
-  }
-
-  .task-top {
-    flex-wrap:wrap;
-  }
-
-  .task-actions {
-    width:100%;
-  }
-
-  .status-buttons,
-  .form-status-buttons {
-    grid-template-columns:1fr;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<div class="app">
-
-<!-- TOP -->
-
-<header class="topbar">
-
-  <div class="brand">
-    Project Tracker
-    <small>One project, shared live progress</small>
-  </div>
-
-  <div class="actions">
-
-    <button
-      id="themeBtn"
-      class="icon-btn"
-      type="button"
-    >
-      ◐
-    </button>
-
-    <button
-      id="loginBtn"
-      class="btn"
-      type="button"
-    >
-      Owner Login
-    </button>
-
-    <button
-      id="logoutBtn"
-      class="btn hidden"
-      type="button"
-    >
-      Logout
-    </button>
-
-  </div>
-
-</header>
-
-
-<!-- PROJECT -->
-
-<section class="hero">
-
-  <div class="hero-top">
-
-    <div>
-
-      <p class="eyebrow">
-        Current project
-      </p>
-
-      <div id="titleView" class="title-line">
-
-        <h1 id="projectTitle">
-          Project Progress Tracker
-        </h1>
-
-        <button
-          id="editTitleBtn"
-          class="mini owner-only hidden"
-          type="button"
-        >
-          Edit
-        </button>
-
-      </div>
-
-      <div id="titleEdit" class="hidden">
-
-        <input
-          id="titleInput"
-          class="title-input"
-          maxlength="120"
-        >
-
-        <div
-          class="actions"
-          style="margin-top:8px"
-        >
-
-          <button
-            id="saveTitleBtn"
-            class="btn primary"
-            type="button"
-          >
-            Save
-          </button>
-
-          <button
-            id="cancelTitleBtn"
-            class="btn"
-            type="button"
-          >
-            Cancel
-          </button>
-
-        </div>
-
-      </div>
-
-      <p class="subtitle">
-        Choose To Do, In Progress, or Completed.
-        Only the owner can make changes.
-      </p>
-
-      <span
-        id="modeBadge"
-        class="viewer-badge"
-      >
-        Read-only view
-      </span>
-
-    </div>
-
-
-    <div class="score">
-
-      <strong id="overall">
-        0%
-      </strong>
-
-      <span>
-        Complete
-      </span>
-
-    </div>
-
-  </div>
-
-
-  <!-- AUTOMATIC PROGRESS DISPLAY ONLY -->
-
-  <div class="bar">
-    <div id="overallBar"></div>
-  </div>
-
-
-  <div
-    id="appStatus"
-    class="status"
-  >
-    Opening project...
-  </div>
-
-</section>
-
-
-<!-- STATISTICS -->
-
-<section class="stats">
-
-  <article class="stat">
-
-    <strong id="totalStat">
-      0
-    </strong>
-
-    <span>
-      Total Tasks
-    </span>
-
-  </article>
-
-
-  <article class="stat">
-
-    <strong id="progressStat">
-      0
-    </strong>
-
-    <span>
-      In Progress
-    </span>
-
-  </article>
-
-
-  <article class="stat">
-
-    <strong id="doneStat">
-      0
-    </strong>
-
-    <span>
-      Completed
-    </span>
-
-  </article>
-
-
-  <article class="stat">
-
-    <strong id="remainingStat">
-      0
-    </strong>
-
-    <span>
-      Remaining
-    </span>
-
-  </article>
-
-</section>
-
-
-<!-- TASKS -->
-
-<section class="workspace">
-
-  <div class="workspace-head">
-
-    <div>
-
-      <h2>
-        Project Activities
-      </h2>
-
-      <p>
-        Status is changed with buttons only.
-      </p>
-
-    </div>
-
-
-    <button
-      id="addTaskBtn"
-      class="btn primary owner-only hidden"
-      type="button"
-    >
-      + Add Task
-    </button>
-
-  </div>
-
-
-  <!-- FILTER BUTTONS -->
-
-  <div class="filters">
-
-    <button
-      class="filter active"
-      data-filter="all"
-      type="button"
-    >
-      All
-    </button>
-
-    <button
-      class="filter"
-      data-filter="todo"
-      type="button"
-    >
-      To Do
-    </button>
-
-    <button
-      class="filter"
-      data-filter="progress"
-      type="button"
-    >
-      In Progress
-    </button>
-
-    <button
-      class="filter"
-      data-filter="completed"
-      type="button"
-    >
-      Completed
-    </button>
-
-  </div>
-
-
-  <div
-    id="taskList"
-    class="tasks"
-  >
-
-    <div class="empty">
-      Loading tasks...
-    </div>
-
-  </div>
-
-</section>
-
-</div>
-
-
-<!-- OWNER LOGIN -->
-
-<div
-  id="loginModal"
-  class="modal-bg"
->
-
-  <div class="modal">
-
-    <h2>
-      Owner Login
-    </h2>
-
-    <form id="loginForm">
-
-      <div class="field">
-
-        <label for="loginEmail">
-          Email
-        </label>
-
-        <input
-          id="loginEmail"
-          type="email"
-          autocomplete="username"
-          required
-        >
-
-      </div>
-
-
-      <div class="field">
-
-        <label for="loginPassword">
-          Password
-        </label>
-
-        <input
-          id="loginPassword"
-          type="password"
-          autocomplete="current-password"
-          required
-        >
-
-      </div>
-
-
-      <div class="modal-actions">
-
-        <button
-          type="button"
-          class="btn"
-          data-close="loginModal"
-        >
-          Cancel
-        </button>
-
-        <button
-          class="btn primary"
-          type="submit"
-        >
-          Login
-        </button>
-
-      </div>
-
-    </form>
-
-  </div>
-
-</div>
-
-
-<!-- ADD / EDIT TASK -->
-
-<div
-  id="taskModal"
-  class="modal-bg"
->
-
-  <div class="modal">
-
-    <h2 id="taskModalTitle">
-      Add Task
-    </h2>
-
-
-    <form id="taskForm">
-
-      <input
-        id="taskId"
-        type="hidden"
-      >
-
-
-      <div class="field">
-
-        <label for="taskName">
-          Task Name
-        </label>
-
-        <input
-          id="taskName"
-          maxlength="120"
-          required
-        >
-
-      </div>
-
-
-      <div class="field">
-
-        <label for="taskPriority">
-          Priority
-        </label>
-
-        <select id="taskPriority">
-
-          <option value="low">
-            Low
-          </option>
-
-          <option
-            value="medium"
-            selected
-          >
-            Medium
-          </option>
-
-          <option value="high">
-            High
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <div class="field">
-
-        <label for="taskDue">
-          Due Date
-        </label>
-
-        <input
-          id="taskDue"
-          type="date"
-        >
-
-      </div>
-
-
-      <!-- STATUS BUTTONS -->
-
-      <div class="field">
-
-        <label>
-          Status
-        </label>
-
-        <input
-          id="taskProgress"
-          type="hidden"
-          value="0"
-        >
-
-        <div class="form-status-buttons">
-
-          <button
-            class="form-status-btn todo active"
-            data-form-status="0"
-            type="button"
-          >
-            To Do
-          </button>
-
-          <button
-            class="form-status-btn progress"
-            data-form-status="50"
-            type="button"
-          >
-            In Progress
-          </button>
-
-          <button
-            class="form-status-btn completed"
-            data-form-status="100"
-            type="button"
-          >
-            Completed
-          </button>
-
-        </div>
-
-      </div>
-
-
-      <div class="modal-actions">
-
-        <button
-          type="button"
-          class="btn"
-          data-close="taskModal"
-        >
-          Cancel
-        </button>
-
-        <button
-          class="btn primary"
-          type="submit"
-        >
-          Save
-        </button>
-
-      </div>
-
-    </form>
-
-  </div>
-
-</div>
-
-
-<!-- SUPABASE -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-
-(() => {
-
-"use strict";
-
-
-/* -------------------------
-   SUPABASE SETTINGS
-------------------------- */
-
-const SUPABASE_URL =
-"https://vfkjdccpqmzdfzmrvgmh.supabase.co";
-
-
-const SUPABASE_PUBLISHABLE_KEY =
-"sb_publishable_f2DO1NWMbF63qCRhJ9dtFQ_vwT4vY7o";
-
-
-const OWNER_UID =
-"3395445c-e7ea-4fa9-93c0-38435563b729";
-
-
-/* -------------------------
-   VARIABLES
-------------------------- */
-
-const $ = id =>
-document.getElementById(id);
-
-
-let sb = null;
-
-let project = null;
-
-let tasks = [];
-
-let user = null;
-
-let filter = "all";
-
-
-const isOwner = () =>
-Boolean(
-  user &&
-  user.id === OWNER_UID
-);
-
-
-/* -------------------------
-   PROGRESS VALUES
-
-   TO DO       = 0
-   IN PROGRESS = 50
-   COMPLETED   = 100
-------------------------- */
-
-function normalizeProgress(value) {
-
-  const number =
-  Number(value) || 0;
-
-
-  if (number >= 100) {
-    return 100;
-  }
-
-
-  if (number > 0) {
-    return 50;
-  }
-
-
-  return 0;
-
-}
-
-
-/* -------------------------
-   SECURITY
-------------------------- */
-
-function escapeHtml(value) {
-
-  return String(
-    value ?? ""
-  )
-
-  .replaceAll(
-    "&",
-    "&amp;"
-  )
-
-  .replaceAll(
-    "<",
-    "&lt;"
-  )
-
-  .replaceAll(
-    ">",
-    "&gt;"
-  )
-
-  .replaceAll(
-    '"',
-    "&quot;"
-  )
-
-  .replaceAll(
-    "'",
-    "&#039;"
-  );
-
-}
-
-
-function capitalize(value) {
-
-  const text =
-  String(value || "");
-
-
-  return (
-    text.charAt(0).toUpperCase() +
-    text.slice(1)
-  );
-
-}
-
-
-/* -------------------------
-   STATUS MESSAGE
-------------------------- */
-
-function setStatus(
-  message,
-  error = false
-) {
-
-  $("appStatus").textContent =
-  message;
-
-
-  $("appStatus")
-  .classList
-  .toggle(
-    "error",
-    error
-  );
-
-}
-
-
-/* -------------------------
-   TOAST
-------------------------- */
-
-function toast(message) {
-
-  const element =
-  document.createElement(
-    "div"
-  );
-
-
-  element.className =
-  "toast";
-
-
-  element.textContent =
-  message;
-
-
-  document.body
-  .appendChild(
-    element
-  );
-
-
-  setTimeout(
-    () =>
-    element.remove(),
-    3000
-  );
-
-}
-
-
-/* -------------------------
-   MODALS
-------------------------- */
-
-function openModal(id) {
-
-  $(id)
-  .classList
-  .add(
-    "open"
-  );
-
-}
-
-
-function closeModal(id) {
-
-  $(id)
-  .classList
-  .remove(
-    "open"
-  );
-
-}
-
-
-/* -------------------------
-   OWNER MODE
-------------------------- */
-
-function updateMode() {
-
-  const owner =
-  isOwner();
-
-
-  document
-  .querySelectorAll(
-    ".owner-only"
-  )
-  .forEach(element => {
-
-    element
-    .classList
-    .toggle(
-      "hidden",
-      !owner
-    );
-
-  });
-
-
-  $("loginBtn")
-  .classList
-  .toggle(
-    "hidden",
-    Boolean(user)
-  );
-
-
-  $("logoutBtn")
-  .classList
-  .toggle(
-    "hidden",
-    !user
-  );
-
-
-  $("modeBadge").textContent =
-  owner
-  ? "Owner edit mode"
-  : "Read-only view";
-
-
-  renderTasks();
-
-}
-
-
-/* -------------------------
-   MAIN DISPLAY
-------------------------- */
-
-function render() {
-
-  $("projectTitle").textContent =
-  project?.title ||
-  "Project Progress Tracker";
-
-
-  const total =
-  tasks.length;
-
-
-  const completed =
-  tasks.filter(
-    task =>
-    normalizeProgress(
-      task.progress
-    ) === 100
-  ).length;
-
-
-  const inProgress =
-  tasks.filter(
-    task =>
-    normalizeProgress(
-      task.progress
-    ) === 50
-  ).length;
-
-
-  let overall = 0;
-
-
-  if (total > 0) {
-
-    const totalProgress =
-    tasks.reduce(
-      (sum,task) =>
-
-      sum +
-      normalizeProgress(
-        task.progress
-      ),
-
-      0
-    );
-
-
-    overall =
-    Math.round(
-      totalProgress /
-      total
-    );
-
-  }
-
-
-  $("overall").textContent =
-  overall + "%";
-
-
-  $("overallBar").style.width =
-  overall + "%";
-
-
-  $("totalStat").textContent =
-  total;
-
-
-  $("progressStat").textContent =
-  inProgress;
-
-
-  $("doneStat").textContent =
-  completed;
-
-
-  $("remainingStat").textContent =
-  total - completed;
-
-
-  renderTasks();
-
-}
-
-
-/* -------------------------
-   FILTER
-------------------------- */
-
-function visibleTasks() {
-
-  return tasks.filter(
-    task => {
-
-      const progress =
-      normalizeProgress(
-        task.progress
-      );
-
-
-      if (
-        filter === "todo"
-      ) {
-
-        return (
-          progress === 0
-        );
-
-      }
-
-
-      if (
-        filter === "progress"
-      ) {
-
-        return (
-          progress === 50
-        );
-
-      }
-
-
-      if (
-        filter === "completed"
-      ) {
-
-        return (
-          progress === 100
-        );
-
-      }
-
-
-      return true;
-
-    }
-  );
-
-}
-
-
-/* -------------------------
-   TASK CARDS
-------------------------- */
-
-function renderTasks() {
-
-  const container =
-  $("taskList");
-
-
-  if (!container) {
-    return;
-  }
-
-
-  const owner =
-  isOwner();
-
-
-  const visible =
-  visibleTasks();
-
-
-  if (!visible.length) {
-
-    container.innerHTML =
-    '<div class="empty">' +
-    'No tasks found.' +
-    '</div>';
-
-    return;
-
-  }
-
-
-  container.innerHTML =
-  visible.map(
-    task => {
-
-      const progress =
-      normalizeProgress(
-        task.progress
-      );
-
-
-      const priority =
-      task.priority ||
-      "medium";
-
-
-      const taskClass =
-
-      progress === 100
-      ? "done"
-
-      : progress === 50
-      ? "in-progress"
-
-      : "";
-
-
-      const status =
-
-      progress === 100
-      ? "Completed"
-
-      : progress === 50
-      ? "In Progress"
-
-      : "To Do";
-
-
-      return `
-
-<article class="task ${taskClass}">
-
-<div class="task-top">
-
-
-<div class="task-body">
-
-<div class="task-name">
-
-${escapeHtml(
-  task.name
-)}
-
-</div>
-
-
-<div class="meta">
-
-<span class="tag ${escapeHtml(
-  priority
-)}">
-
-${capitalize(
-  priority
-)}
-
-</span>
-
-
-<span>
-
-${
-  task.due_date
-
-  ? "Due " +
-    escapeHtml(
-      task.due_date
-    )
-
-  : "No due date"
-}
-
-</span>
-
-
-<span>
-
-${status}
-
-</span>
-
-</div>
-
-</div>
-
-
-${
-  owner
-
-  ? `
-
-<div class="task-actions">
-
-<button
-  class="mini"
-  data-edit="${task.id}"
-  type="button"
->
-Edit
-</button>
-
-
-<button
-  class="mini"
-  data-delete="${task.id}"
-  type="button"
->
-Delete
-</button>
-
-</div>
-
-`
-
-  : ""
-}
-
-</div>
-
-
-<!-- STATUS BUTTONS -->
-
-<div class="status-buttons">
-
-
-<button
-
-class="
-status-btn
-todo
-
-${
-  progress === 0
-  ? "active"
-  : ""
-}
-
-"
-
-data-status-id="${task.id}"
-
-data-status-value="0"
-
-type="button"
-
-${
-  owner
-  ? ""
-  : "disabled"
-}
-
->
-
-To Do
-
-</button>
-
-
-<button
-
-class="
-status-btn
-progress
-
-${
-  progress === 50
-  ? "active"
-  : ""
-}
-
-"
-
-data-status-id="${task.id}"
-
-data-status-value="50"
-
-type="button"
-
-${
-  owner
-  ? ""
-  : "disabled"
-}
-
->
-
-In Progress
-
-</button>
-
-
-<button
-
-class="
-status-btn
-completed
-
-${
-  progress === 100
-  ? "active"
-  : ""
-}
-
-"
-
-data-status-id="${task.id}"
-
-data-status-value="100"
-
-type="button"
-
-${
-  owner
-  ? ""
-  : "disabled"
-}
-
->
-
-Completed
-
-</button>
-
-
-</div>
-
-</article>
-
-`;
-
-    }
-
-  ).join("");
-
-
-  if (!owner) {
-    return;
-  }
-
-
-  /* STATUS BUTTON EVENTS */
-
-  container
-  .querySelectorAll(
-    "[data-status-id]"
-  )
-  .forEach(
-    button => {
-
-      button.onclick =
-      () =>
-
-      saveProgress(
-
-        button.dataset.statusId,
-
-        Number(
-          button.dataset.statusValue
-        )
-
-      );
-
-    }
-  );
-
-
-  /* EDIT */
-
-  container
-  .querySelectorAll(
-    "[data-edit]"
-  )
-  .forEach(
-    button => {
-
-      button.onclick =
-      () =>
-
-      openTask(
-        button.dataset.edit
-      );
-
-    }
-  );
-
-
-  /* DELETE */
-
-  container
-  .querySelectorAll(
-    "[data-delete]"
-  )
-  .forEach(
-    button => {
-
-      button.onclick =
-      () =>
-
-      deleteTask(
-        button.dataset.delete
-      );
-
-    }
-  );
-
-}
-
-
-/* -------------------------
-   LOAD SUPABASE DATA
-------------------------- */
-
-async function loadData() {
-
-  if (!sb) {
-    return;
-  }
-
-
-  setStatus(
-    "Loading shared project data..."
-  );
-
-
-  const [
-    projectResult,
-    taskResult
-  ] =
-
-  await Promise.all([
-
-    sb
-    .from(
-      "projects"
-    )
-    .select(
-      "id,title,created_at"
-    )
-    .order(
-      "id",
-      {
-        ascending:true
-      }
-    )
-    .limit(
-      1
-    ),
-
-
-    sb
-    .from(
-      "tasks"
-    )
-    .select(
-      "id,name,priority,due_date,progress,created_at"
-    )
-    .order(
-      "created_at",
-      {
-        ascending:true
-      }
-    )
-
-  ]);
-
-
-  if (
-    projectResult.error ||
-    taskResult.error
-  ) {
-
-    const error =
-
-    projectResult.error ||
-    taskResult.error;
-
-
-    setStatus(
-      error.message,
-      true
-    );
-
-
-    $("taskList").innerHTML =
-
-    '<div class="empty">' +
-
-    'Could not load tasks. ' +
-
-    'Check Supabase connection.' +
-
-    '</div>';
-
-
-    return;
-
-  }
-
-
-  project =
-
-  projectResult
-  .data?.[0] ||
-  null;
-
-
-  tasks =
-
-  taskResult.data ||
-  [];
-
-
-  render();
-
-
-  setStatus(
-
-    "Last updated: " +
-
-    new Date()
-    .toLocaleString()
-
-  );
-
-}
-
-
-/* -------------------------
-   CHANGE TASK STATUS
-------------------------- */
-
-async function saveProgress(
-  id,
-  progress
-) {
-
-  const {
-    error
-  } =
-
-  await sb
-  .from(
-    "tasks"
-  )
-  .update({
-    progress
-  })
-  .eq(
-    "id",
-    id
-  );
-
-
-  if (error) {
-
-    toast(
-      error.message
-    );
-
-    return;
-
-  }
-
-
-  if (
-    progress === 0
-  ) {
-
-    toast(
-      "Status changed to To Do"
-    );
-
-  }
-
-
-  if (
-    progress === 50
-  ) {
-
-    toast(
-      "Status changed to In Progress"
-    );
-
-  }
-
-
-  if (
-    progress === 100
-  ) {
-
-    toast(
-      "Task completed"
-    );
-
-  }
-
-
-  await loadData();
-
-}
-
-
-/* -------------------------
-   DELETE TASK
-------------------------- */
-
-async function deleteTask(id) {
-
-  const confirmed =
-  confirm(
-    "Delete this task?"
-  );
-
-
-  if (!confirmed) {
-    return;
-  }
-
-
-  const {
-    error
-  } =
-
-  await sb
-  .from(
-    "tasks"
-  )
-  .delete()
-  .eq(
-    "id",
-    id
-  );
-
-
-  if (error) {
-
-    toast(
-      error.message
-    );
-
-    return;
-
-  }
-
-
-  toast(
-    "Task deleted"
-  );
-
-
-  await loadData();
-
-}
-
-
-/* -------------------------
-   FORM STATUS
-------------------------- */
-
-function setFormStatus(
-  value
-) {
-
-  const progress =
-  normalizeProgress(
-    value
-  );
-
-
-  $("taskProgress").value =
-  String(
-    progress
-  );
-
-
-  document
-  .querySelectorAll(
-    "[data-form-status]"
-  )
-  .forEach(
-    button => {
-
-      button
-      .classList
-      .toggle(
-
-        "active",
-
-        Number(
-          button.dataset.formStatus
-        ) === progress
-
-      );
-
-    }
-  );
-
-}
-
-
-/* FORM STATUS BUTTON EVENTS */
-
-document
-.querySelectorAll(
-  "[data-form-status]"
-)
-.forEach(
-  button => {
-
-    button.onclick =
-    () => {
-
-      setFormStatus(
-
-        Number(
-          button.dataset.formStatus
-        )
-
-      );
-
-    };
-
-  }
-);
-
-
-/* -------------------------
-   OPEN TASK
-------------------------- */
-
-function openTask(id) {
-
-  const task =
-  tasks.find(
-    item =>
-
-    String(
-      item.id
-    ) ===
-
-    String(
-      id
-    )
-  );
-
-
-  $("taskId").value =
-  task?.id ||
-  "";
-
-
-  $("taskName").value =
-  task?.name ||
-  "";
-
-
-  $("taskPriority").value =
-  task?.priority ||
-  "medium";
-
-
-  $("taskDue").value =
-  task?.due_date ||
-  "";
-
-
-  setFormStatus(
-    task?.progress ||
-    0
-  );
-
-
-  $("taskModalTitle")
-  .textContent =
-
-  task
-  ? "Edit Task"
-  : "Add Task";
-
-
-  openModal(
-    "taskModal"
-  );
-
-}
-
-
-/* -------------------------
-   SAVE TASK
-------------------------- */
-
-$("taskForm")
-.onsubmit =
-
-async event => {
-
-  event
-  .preventDefault();
-
-
-  const id =
-  $("taskId").value;
-
-
-  const payload = {
-
-    name:
-
-    $("taskName")
-    .value
-    .trim(),
-
-
-    priority:
-
-    $("taskPriority")
-    .value,
-
-
-    due_date:
-
-    $("taskDue")
-    .value ||
-
-    null,
-
-
-    progress:
-
-    Number(
-      $("taskProgress")
-      .value
-    )
-
-  };
-
-
-  let result;
-
-
-  if (id) {
-
-    result =
-
-    await sb
-    .from(
-      "tasks"
-    )
-    .update(
-      payload
-    )
-    .eq(
-      "id",
-      id
-    );
-
-  } else {
-
-    result =
-
-    await sb
-    .from(
-      "tasks"
-    )
-    .insert(
-      payload
-    );
-
-  }
-
-
-  if (
-    result.error
-  ) {
-
-    toast(
-      result.error.message
-    );
-
-    return;
-
-  }
-
-
-  closeModal(
-    "taskModal"
-  );
-
-
-  toast(
-    "Task saved"
-  );
-
-
-  await loadData();
-
-};
-
-
-/* -------------------------
-   LOGIN
-------------------------- */
-
-$("loginForm")
-.onsubmit =
-
-async event => {
-
-  event
-  .preventDefault();
-
-
-  const {
-    error
-  } =
-
-  await sb.auth
-  .signInWithPassword({
-
-    email:
-
-    $("loginEmail")
-    .value
-    .trim(),
-
-
-    password:
-
-    $("loginPassword")
-    .value
-
-  });
-
-
-  if (error) {
-
-    toast(
-      error.message
-    );
-
-    return;
-
-  }
-
-
-  $("loginPassword").value =
-  "";
-
-
-  closeModal(
-    "loginModal"
-  );
-
-
-  toast(
-    "Owner login successful"
-  );
-
-};
-
-
-/* LOGIN BUTTON */
-
-$("loginBtn")
-.onclick =
-
-() =>
-
-openModal(
-  "loginModal"
-);
-
-
-/* LOGOUT */
-
-$("logoutBtn")
-.onclick =
-
-async () => {
-
-  await sb.auth.signOut();
-
-
-  toast(
-    "Logged out"
-  );
-
-};
-
-
-/* NEW TASK */
-
-$("addTaskBtn")
-.onclick =
-
-() =>
-openTask();
-
-
-/* -------------------------
-   PROJECT TITLE
-------------------------- */
-
-$("editTitleBtn")
-.onclick =
-
-() => {
-
-  $("titleInput").value =
-  project?.title ||
-  "";
-
-
-  $("titleView")
-  .classList
-  .add(
-    "hidden"
-  );
-
-
-  $("titleEdit")
-  .classList
-  .remove(
-    "hidden"
-  );
-
-};
-
-
-$("cancelTitleBtn")
-.onclick =
-
-() => {
-
-  $("titleView")
-  .classList
-  .remove(
-    "hidden"
-  );
-
-
-  $("titleEdit")
-  .classList
-  .add(
-    "hidden"
-  );
-
-};
-
-
-$("saveTitleBtn")
-.onclick =
-
-async () => {
-
-  const title =
-
-  $("titleInput")
-  .value
-  .trim();
-
-
-  if (!title) {
-    return;
-  }
-
-
-  let result;
-
-
-  if (project) {
-
-    result =
-
-    await sb
-    .from(
-      "projects"
-    )
-    .update({
-      title
-    })
-    .eq(
-      "id",
-      project.id
-    );
-
-  } else {
-
-    result =
-
-    await sb
-    .from(
-      "projects"
-    )
-    .insert({
-      title
-    });
-
-  }
-
-
-  if (
-    result.error
-  ) {
-
-    toast(
-      result.error.message
-    );
-
-    return;
-
-  }
-
-
-  $("cancelTitleBtn")
-  .click();
-
-
-  await loadData();
-
-};
-
-
-/* -------------------------
-   FILTER EVENTS
-------------------------- */
-
-document
-.querySelectorAll(
-  ".filter"
-)
-.forEach(
-  button => {
-
-    button.onclick =
-    () => {
-
-      document
-      .querySelectorAll(
-        ".filter"
-      )
-      .forEach(
-        item => {
-
-          item
-          .classList
-          .remove(
-            "active"
-          );
-
-        }
-      );
-
-
-      button
-      .classList
-      .add(
-        "active"
-      );
-
-
-      filter =
-      button.dataset.filter;
-
-
-      renderTasks();
-
-    };
-
-  }
-);
-
-
-/* -------------------------
-   CLOSE MODALS
-------------------------- */
-
-document
-.querySelectorAll(
-  "[data-close]"
-)
-.forEach(
-  button => {
-
-    button.onclick =
-    () =>
-
-    closeModal(
-      button.dataset.close
-    );
-
-  }
-);
-
-
-document
-.querySelectorAll(
-  ".modal-bg"
-)
-.forEach(
-  modal => {
-
-    modal.onclick =
-    event => {
-
-      if (
-        event.target ===
-        modal
-      ) {
-
-        closeModal(
-          modal.id
-        );
-
-      }
-
-    };
-
-  }
-);
-
-
-/* -------------------------
-   DARK MODE
-------------------------- */
-
-$("themeBtn")
-.onclick =
-
-() => {
-
-  document.body
-  .classList
-  .toggle(
-    "dark"
-  );
-
-
-  localStorage.setItem(
-
-    "ppt_theme",
-
-    document.body
-    .classList
-    .contains(
-      "dark"
-    )
-
-    ? "dark"
-
-    : "light"
-
-  );
-
-};
-
-
-/* -------------------------
-   START APPLICATION
-------------------------- */
-
-async function init() {
-
-  /* THEME */
-
-  if (
-
-    localStorage
-    .getItem(
-      "ppt_theme"
-    ) ===
-    "dark"
-
-  ) {
-
-    document.body
-    .classList
-    .add(
-      "dark"
-    );
-
-  }
-
-
-  /*
-  If Supabase library fails,
-  do not make the website blank.
-  */
-
-  if (
-    !window.supabase
-  ) {
-
-    setStatus(
-
-      "Supabase library did not load. " +
-      "Check your internet connection.",
-
-      true
-    );
-
-
-    $("taskList")
-    .innerHTML =
-
-    '<div class="empty">' +
-
-    'The page loaded, but Supabase could not connect.' +
-
-    '</div>';
-
-
-    return;
-
-  }
-
-
-  try {
-
-
-    /* CREATE SUPABASE CLIENT */
-
-    sb =
-
-    window.supabase
-    .createClient(
-
-      SUPABASE_URL,
-
-      SUPABASE_PUBLISHABLE_KEY
-
-    );
-
-
-    /* CURRENT LOGIN */
-
-    const {
-
-      data:{
-        session
-      }
-
-    } =
-
-    await sb.auth
-    .getSession();
-
-
-    user =
-
-    session?.user ||
-    null;
-
-
-    updateMode();
-
-
-    /* LOAD PROJECT */
-
-    await loadData();
-
-
-    /* LISTEN FOR LOGIN / LOGOUT */
-
-    sb.auth
-    .onAuthStateChange(
-
-      async (
-        _event,
-        session
-      ) => {
-
-        user =
-
-        session?.user ||
-        null;
-
-
-        updateMode();
-
-
-        await loadData();
-
-      }
-
-    );
-
-
-  } catch(error) {
-
-
-    console.error(
-      error
-    );
-
-
-    setStatus(
-
-      "Application error: " +
-      error.message,
-
-      true
-    );
-
-
-    $("taskList")
-    .innerHTML =
-
-    '<div class="empty">' +
-
-    'The application could not start.' +
-
-    '</div>';
-
-  }
-
-}
-
-
-/* RUN */
-
-init();
-
-
-})();
-
-</script>
-
-</body>
-</html>
+.task.done .task-
