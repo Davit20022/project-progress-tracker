@@ -15,11 +15,14 @@
   --text:#172033;
   --muted:#687386;
   --line:#e2e7ef;
+
   --primary:#5b5ce2;
+
   --green:#159b63;
   --amber:#d97706;
   --red:#dc3545;
   --todo:#64748b;
+
   --shadow:0 10px 30px rgba(15,23,42,.07);
 }
 
@@ -30,7 +33,9 @@ body.dark {
   --text:#edf2f7;
   --muted:#9aa6b8;
   --line:#2a3341;
+
   --primary:#8182ff;
+
   --green:#36c98a;
   --amber:#f4ad45;
   --red:#ff6b78;
@@ -43,9 +48,16 @@ body.dark {
 
 body {
   margin:0;
+
   background:var(--bg);
   color:var(--text);
-  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
 }
 
 button,
@@ -66,20 +78,35 @@ button:disabled {
   display:none !important;
 }
 
-/* APP */
+/* =========================
+   APP
+========================= */
 
 .app {
-  width:min(1050px,calc(100% - 28px));
+  width:min(
+    1050px,
+    calc(100% - 28px)
+  );
+
   margin:auto;
-  padding:22px 0 45px;
+
+  padding:
+    22px
+    0
+    45px;
 }
 
-/* TOP BAR */
+/* =========================
+   TOP BAR
+========================= */
 
 .topbar {
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
+
   gap:14px;
 }
 
@@ -90,15 +117,20 @@ button:disabled {
 
 .brand small {
   display:block;
+
   margin-top:2px;
+
   color:var(--muted);
+
   font-size:11px;
   font-weight:500;
 }
 
 .actions {
   display:flex;
+
   flex-wrap:wrap;
+
   gap:7px;
 }
 
@@ -106,687 +138,1583 @@ button:disabled {
 .icon-btn,
 .mini {
   min-height:36px;
-  padding:0 12px;
+
+  padding:
+    0
+    12px;
+
   color:var(--text);
+
   background:var(--card);
-  border:1px solid var(--line);
+
+  border:
+    1px
+    solid
+    var(--line);
+
   border-radius:9px;
+
   font-weight:750;
+
   transition:.15s;
 }
 
 .btn:hover:not(:disabled),
 .icon-btn:hover:not(:disabled),
 .mini:hover:not(:disabled) {
-  border-color:var(--primary);
+
+  border-color:
+    var(--primary);
+
 }
 
 .btn.primary {
+
   color:white;
-  background:var(--primary);
-  border-color:var(--primary);
+
+  background:
+    var(--primary);
+
+  border-color:
+    var(--primary);
+
 }
 
 .icon-btn {
+
   width:38px;
+
   padding:0;
+
 }
 
 .mini {
+
   min-height:31px;
-  padding:0 10px;
+
+  padding:
+    0
+    10px;
+
   color:var(--muted);
+
   font-size:12px;
+
 }
 
-.mini:hover {
-  color:var(--text);
-}
-
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero,
 .workspace,
 .stat {
-  background:var(--card);
-  border:1px solid var(--line);
-  box-shadow:var(--shadow);
+
+  background:
+    var(--card);
+
+  border:
+    1px
+    solid
+    var(--line);
+
+  box-shadow:
+    var(--shadow);
+
 }
 
 .hero {
+
   margin-top:18px;
+
   padding:25px;
+
   border-radius:18px;
+
 }
 
 .hero-top {
+
   display:flex;
+
   align-items:center;
-  justify-content:space-between;
+
+  justify-content:
+    space-between;
+
   gap:16px;
+
 }
 
 .eyebrow {
-  margin:0 0 6px;
-  color:var(--primary);
+
+  margin:
+    0
+    0
+    6px;
+
+  color:
+    var(--primary);
+
   font-size:11px;
+
   font-weight:850;
+
   letter-spacing:.12em;
-  text-transform:uppercase;
+
+  text-transform:
+    uppercase;
+
 }
 
 .title-line {
+
   display:flex;
+
   align-items:center;
+
   flex-wrap:wrap;
+
   gap:7px;
+
 }
 
 .title-line h1 {
-  margin:0;
-  font-size:clamp(25px,4vw,38px);
-  letter-spacing:-.03em;
-}
 
-.title-edit-actions {
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-  margin-top:8px;
+  margin:0;
+
+  font-size:
+    clamp(
+      25px,
+      4vw,
+      38px
+    );
+
+  letter-spacing:
+    -.03em;
+
 }
 
 .subtitle {
+
   max-width:650px;
-  margin:8px 0 12px;
-  color:var(--muted);
+
+  margin:
+    8px
+    0
+    12px;
+
+  color:
+    var(--muted);
+
   font-size:13px;
+
   line-height:1.5;
+
 }
 
 .viewer-badge {
+
   display:inline-block;
-  padding:6px 9px;
-  color:var(--green);
-  background:rgba(21,155,99,.12);
+
+  padding:
+    6px
+    9px;
+
+  color:
+    var(--green);
+
+  background:
+    rgba(
+      21,
+      155,
+      99,
+      .12
+    );
+
   border-radius:999px;
+
   font-size:11px;
+
   font-weight:800;
+
 }
 
 .score {
+
   min-width:125px;
+
   padding:13px;
+
   text-align:center;
-  background:var(--soft);
+
+  background:
+    var(--soft);
+
   border-radius:13px;
+
 }
 
 .score strong {
+
   display:block;
-  color:var(--primary);
+
+  color:
+    var(--primary);
+
   font-size:27px;
+
 }
 
 .score span {
-  color:var(--muted);
+
+  color:
+    var(--muted);
+
   font-size:11px;
+
 }
 
-/* PROGRESS BAR */
+/* =========================
+   PROGRESS BAR
+========================= */
 
 .bar {
+
+  position:relative;
+
   height:10px;
+
   margin-top:20px;
-  overflow:hidden;
-  background:var(--soft);
-  border:1px solid var(--line);
+
+  /*
+  IMPORTANT:
+  Visible lets the glowing
+  circle extend outside
+  the progress track.
+  */
+
+  overflow:visible;
+
+  background:
+    var(--soft);
+
+  border:
+    1px
+    solid
+    var(--line);
+
   border-radius:999px;
+
 }
 
+/* FILLED PROGRESS */
+
 .bar > div {
+
+  position:relative;
+
   width:0;
+
   height:100%;
-  background:linear-gradient(90deg,#4f51df,#7187ff);
-  transition:width .3s;
+
+  background:
+    linear-gradient(
+      90deg,
+      #4f51df,
+      #7187ff
+    );
+
+  border-radius:999px;
+
+  transition:
+    width
+    .45s
+    ease;
+
+}
+
+/* =========================
+   GLOWING END CIRCLE
+========================= */
+
+.bar > div::after {
+
+  content:"";
+
+  position:absolute;
+
+  top:50%;
+
+  right:-6px;
+
+  width:12px;
+  height:12px;
+
+  transform:
+    translateY(-50%);
+
+  background:
+    #5b5ce2;
+
+  border:
+    3px
+    solid
+    #ffffff;
+
+  border-radius:50%;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(
+      91,
+      92,
+      226,
+      .15
+    ),
+
+    0 0 9px
+    rgba(
+      91,
+      92,
+      226,
+      .65
+    );
+
+  animation:
+    progressGlow
+    1.8s
+    ease-in-out
+    infinite;
+
+}
+
+/* GLOW ANIMATION */
+
+@keyframes progressGlow {
+
+  0%,
+  100% {
+
+    transform:
+      translateY(-50%)
+      scale(1);
+
+    box-shadow:
+      0 0 0 3px
+      rgba(
+        91,
+        92,
+        226,
+        .15
+      ),
+
+      0 0 7px
+      rgba(
+        91,
+        92,
+        226,
+        .55
+      );
+
+  }
+
+  50% {
+
+    transform:
+      translateY(-50%)
+      scale(1.15);
+
+    box-shadow:
+      0 0 0 8px
+      rgba(
+        91,
+        92,
+        226,
+        .08
+      ),
+
+      0 0 18px
+      rgba(
+        91,
+        92,
+        226,
+        .9
+      );
+
+  }
+
+}
+
+/* DARK MODE GLOW */
+
+body.dark .bar > div::after {
+
+  background:
+    #8182ff;
+
+  border-color:
+    #171c25;
+
+}
+
+/* ACCESSIBILITY */
+
+@media(
+  prefers-reduced-motion:
+  reduce
+) {
+
+  .bar > div {
+
+    transition:none;
+
+  }
+
+  .bar > div::after {
+
+    animation:none;
+
+  }
+
 }
 
 .status {
-  margin-top:9px;
-  color:var(--muted);
+
+  margin-top:11px;
+
+  color:
+    var(--muted);
+
   font-size:10px;
+
 }
 
 .status.error {
-  color:var(--red);
+
+  color:
+    var(--red);
+
 }
 
-/* STATS */
+/* =========================
+   STATS
+========================= */
 
 .stats {
+
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+
+  grid-template-columns:
+    repeat(
+      4,
+      1fr
+    );
+
   gap:10px;
+
   margin-top:12px;
+
 }
 
 .stat {
+
   padding:13px;
+
   border-radius:13px;
+
 }
 
 .stat strong {
+
   display:block;
+
   font-size:21px;
+
 }
 
 .stat span {
-  color:var(--muted);
+
+  color:
+    var(--muted);
+
   font-size:11px;
+
 }
 
-/* WORKSPACE */
+/* =========================
+   WORKSPACE
+========================= */
 
 .workspace {
+
   margin-top:12px;
+
   padding:17px;
+
   border-radius:17px;
+
 }
 
 .workspace-head {
+
   display:flex;
+
   align-items:center;
-  justify-content:space-between;
+
+  justify-content:
+    space-between;
+
   gap:12px;
+
 }
 
 .workspace h2 {
+
   margin:0;
+
   font-size:18px;
+
 }
 
 .workspace p {
-  margin:4px 0 0;
-  color:var(--muted);
+
+  margin:
+    4px
+    0
+    0;
+
+  color:
+    var(--muted);
+
   font-size:11px;
+
 }
 
-/* SORT + ADD TASK */
+/* SORT */
 
 .workspace-actions {
+
   display:flex;
+
   align-items:center;
+
   gap:8px;
+
 }
 
 .sort-select {
+
   min-height:36px;
-  padding:0 32px 0 11px;
-  color:var(--text);
-  background:var(--card);
-  border:1px solid var(--line);
+
+  padding:
+    0
+    32px
+    0
+    11px;
+
+  color:
+    var(--text);
+
+  background:
+    var(--card);
+
+  border:
+    1px
+    solid
+    var(--line);
+
   border-radius:9px;
+
   font-size:11px;
+
   font-weight:750;
+
   cursor:pointer;
+
   outline:none;
+
 }
 
 .sort-select:hover,
 .sort-select:focus {
-  border-color:var(--primary);
+
+  border-color:
+    var(--primary);
+
 }
 
-/* FILTERS */
+/* =========================
+   FILTER
+========================= */
 
 .filters {
+
   display:flex;
+
   align-items:center;
+
   gap:6px;
+
   padding:4px;
-  margin:14px 0;
+
+  margin:
+    14px
+    0;
+
   overflow-x:auto;
+
   overflow-y:hidden;
-  background:var(--soft);
+
+  background:
+    var(--soft);
+
   border-radius:10px;
-  scrollbar-width:thin;
+
 }
 
 .filter {
+
   display:inline-flex;
+
   align-items:center;
+
   justify-content:center;
+
   gap:7px;
-  flex:1 0 auto;
+
+  flex:
+    1
+    0
+    auto;
+
   min-width:max-content;
+
   min-height:35px;
-  padding:0 11px;
-  color:var(--muted);
-  background:transparent;
+
+  padding:
+    0
+    11px;
+
+  color:
+    var(--muted);
+
+  background:
+    transparent;
+
   border:0;
+
   border-radius:7px;
+
   font-size:12px;
+
   font-weight:750;
+
   white-space:nowrap;
+
 }
 
 .filter.active {
-  color:var(--text);
-  background:var(--card);
-  box-shadow:0 2px 7px rgba(0,0,0,.06);
+
+  color:
+    var(--text);
+
+  background:
+    var(--card);
+
+  box-shadow:
+    0
+    2px
+    7px
+    rgba(
+      0,
+      0,
+      0,
+      .06
+    );
+
 }
 
 .filter-count {
+
   display:inline-grid;
+
   place-items:center;
+
   min-width:20px;
+
   height:20px;
-  padding:0 6px;
-  color:var(--muted);
-  background:var(--card);
-  border:1px solid var(--line);
+
+  padding:
+    0
+    6px;
+
+  color:
+    var(--muted);
+
+  background:
+    var(--card);
+
+  border:
+    1px
+    solid
+    var(--line);
+
   border-radius:999px;
+
   font-size:10px;
+
   font-weight:850;
+
 }
 
-.filter.active .filter-count {
+.filter.active
+.filter-count {
+
   color:white;
-  background:var(--primary);
-  border-color:var(--primary);
+
+  background:
+    var(--primary);
+
+  border-color:
+    var(--primary);
+
 }
 
-/* TASKS */
+/* =========================
+   TASKS
+========================= */
 
 .tasks {
+
   display:grid;
+
   gap:7px;
+
 }
 
 .task {
+
   position:relative;
+
   display:grid;
-  grid-template-columns:34px minmax(0,1fr) auto;
+
+  grid-template-columns:
+    34px
+    minmax(0,1fr)
+    auto;
+
   align-items:center;
+
   gap:10px;
+
   min-height:68px;
-  padding:10px 12px;
-  background:var(--card);
-  border:1px solid var(--line);
+
+  padding:
+    10px
+    12px;
+
+  background:
+    var(--card);
+
+  border:
+    1px
+    solid
+    var(--line);
+
   border-radius:11px;
+
   transition:.2s;
+
 }
 
 .task:hover {
-  border-color:var(--primary);
+
+  border-color:
+    var(--primary);
+
 }
 
 .task.done {
-  background:rgba(21,155,99,.05);
-  border-color:rgba(21,155,99,.25);
+
+  background:
+    rgba(
+      21,
+      155,
+      99,
+      .05
+    );
+
+  border-color:
+    rgba(
+      21,
+      155,
+      99,
+      .25
+    );
+
 }
 
 .task.in-progress {
-  border-color:rgba(217,119,6,.25);
+
+  border-color:
+    rgba(
+      217,
+      119,
+      6,
+      .25
+    );
+
 }
 
 .task-icon {
+
   width:28px;
   height:28px;
+
   display:grid;
+
   place-items:center;
-  color:var(--todo);
-  background:var(--soft);
-  border:2px solid var(--todo);
+
+  color:
+    var(--todo);
+
+  background:
+    var(--soft);
+
+  border:
+    2px
+    solid
+    var(--todo);
+
   border-radius:50%;
+
   font-size:13px;
+
   font-weight:900;
+
 }
 
-.task.in-progress .task-icon {
-  color:var(--amber);
-  border-color:var(--amber);
+.task.in-progress
+.task-icon {
+
+  color:
+    var(--amber);
+
+  border-color:
+    var(--amber);
+
 }
 
-.task.done .task-icon {
+.task.done
+.task-icon {
+
   color:white;
-  background:var(--green);
-  border-color:var(--green);
+
+  background:
+    var(--green);
+
+  border-color:
+    var(--green);
+
 }
 
 .task-main {
+
   min-width:0;
+
 }
 
 .task-name {
+
   overflow:hidden;
-  color:var(--text);
+
+  color:
+    var(--text);
+
   font-size:14px;
+
   font-weight:800;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+
 }
 
-.task.done .task-name {
-  color:var(--muted);
-  text-decoration:line-through;
+.task.done
+.task-name {
+
+  color:
+    var(--muted);
+
+  text-decoration:
+    line-through;
+
 }
 
 .meta {
+
   display:flex;
+
   align-items:center;
+
   flex-wrap:wrap;
+
   gap:6px;
+
   margin-top:4px;
-  color:var(--muted);
+
+  color:
+    var(--muted);
+
   font-size:10px;
+
 }
 
 .tag {
-  padding:3px 7px;
+
+  padding:
+    3px
+    7px;
+
   border-radius:999px;
+
   font-size:10px;
+
   font-weight:800;
+
 }
 
 .tag.low {
-  color:var(--green);
-  background:rgba(21,155,99,.12);
+
+  color:
+    var(--green);
+
+  background:
+    rgba(
+      21,
+      155,
+      99,
+      .12
+    );
+
 }
 
 .tag.medium {
-  color:var(--amber);
-  background:rgba(217,119,6,.12);
+
+  color:
+    var(--amber);
+
+  background:
+    rgba(
+      217,
+      119,
+      6,
+      .12
+    );
+
 }
 
 .tag.high {
-  color:var(--red);
-  background:rgba(220,53,69,.12);
+
+  color:
+    var(--red);
+
+  background:
+    rgba(
+      220,
+      53,
+      69,
+      .12
+    );
+
 }
 
 .task-right {
+
   display:flex;
+
   align-items:center;
-  justify-content:flex-end;
+
+  justify-content:
+    flex-end;
+
   flex-wrap:wrap;
+
   gap:6px;
+
 }
 
-/* STATUS */
+/* =========================
+   STATUS
+========================= */
 
 .status-picker {
+
   position:relative;
+
 }
 
 .current-status {
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
+
   min-width:116px;
+
   min-height:32px;
-  padding:0 10px;
-  color:var(--muted);
-  background:var(--soft);
-  border:1px solid var(--line);
+
+  padding:
+    0
+    10px;
+
+  color:
+    var(--muted);
+
+  background:
+    var(--soft);
+
+  border:
+    1px
+    solid
+    var(--line);
+
   border-radius:8px;
+
   font-size:11px;
+
   font-weight:800;
+
 }
 
 .current-status.todo {
-  color:var(--todo);
+
+  color:
+    var(--todo);
+
 }
 
 .current-status.progress {
-  color:var(--amber);
+
+  color:
+    var(--amber);
+
 }
 
 .current-status.completed {
-  color:var(--green);
+
+  color:
+    var(--green);
+
 }
 
 .current-status:disabled {
-  cursor:not-allowed;
+
   opacity:.72;
+
+  cursor:not-allowed;
+
 }
 
+/* STATUS MENU */
+
 .status-menu {
+
   position:absolute;
-  top:calc(100% + 5px);
+
+  top:
+    calc(
+      100% + 5px
+    );
+
   right:0;
+
   z-index:10;
+
   display:none;
+
   width:145px;
+
   padding:5px;
-  background:var(--card);
-  border:1px solid var(--line);
+
+  background:
+    var(--card);
+
+  border:
+    1px
+    solid
+    var(--line);
+
   border-radius:10px;
-  box-shadow:0 12px 30px rgba(0,0,0,.15);
+
+  box-shadow:
+    0
+    12px
+    30px
+    rgba(
+      0,
+      0,
+      0,
+      .15
+    );
+
 }
 
 .status-menu.open {
+
   display:grid;
+
   gap:3px;
+
 }
 
 .status-option {
+
   width:100%;
+
   min-height:33px;
-  padding:0 9px;
+
+  padding:
+    0
+    9px;
+
   text-align:left;
-  color:var(--muted);
-  background:transparent;
+
+  color:
+    var(--muted);
+
+  background:
+    transparent;
+
   border:0;
+
   border-radius:7px;
+
   font-size:11px;
+
   font-weight:750;
+
 }
 
 .status-option:hover {
-  background:var(--soft);
+
+  background:
+    var(--soft);
+
 }
 
 .status-option.todo {
-  color:var(--todo);
+
+  color:
+    var(--todo);
+
 }
 
 .status-option.progress {
-  color:var(--amber);
+
+  color:
+    var(--amber);
+
 }
 
 .status-option.completed {
-  color:var(--green);
+
+  color:
+    var(--green);
+
 }
+
+/* EMPTY */
 
 .empty {
+
   padding:36px;
+
   text-align:center;
-  color:var(--muted);
-  background:var(--soft);
+
+  color:
+    var(--muted);
+
+  background:
+    var(--soft);
+
   border-radius:11px;
+
 }
 
-/* MODAL */
+/* =========================
+   MODAL
+========================= */
 
 .modal-bg {
+
   position:fixed;
+
   inset:0;
+
   z-index:20;
+
   display:none;
+
   place-items:center;
+
   padding:18px;
-  background:rgba(7,11,20,.62);
+
+  background:
+    rgba(
+      7,
+      11,
+      20,
+      .62
+    );
+
 }
 
 .modal-bg.open {
+
   display:grid;
+
 }
 
 .modal {
-  width:min(460px,100%);
-  max-height:calc(100vh - 36px);
+
+  width:
+    min(
+      460px,
+      100%
+    );
+
+  max-height:
+    calc(
+      100vh - 36px
+    );
+
   padding:20px;
+
   overflow:auto;
-  background:var(--card);
-  border:1px solid var(--line);
+
+  background:
+    var(--card);
+
+  border:
+    1px
+    solid
+    var(--line);
+
   border-radius:16px;
-  box-shadow:0 30px 80px rgba(0,0,0,.3);
+
+  box-shadow:
+    0
+    30px
+    80px
+    rgba(
+      0,
+      0,
+      0,
+      .3
+    );
+
 }
 
 .modal h2 {
+
   margin:0;
+
 }
 
 .field {
+
   margin-top:13px;
+
 }
 
 .field label {
+
   display:block;
+
   margin-bottom:5px;
+
   font-size:11px;
+
   font-weight:800;
+
 }
 
 .field input,
 .field select,
 .title-input {
+
   width:100%;
+
   min-height:41px;
-  padding:0 11px;
-  color:var(--text);
-  background:var(--soft);
-  border:1px solid var(--line);
+
+  padding:
+    0
+    11px;
+
+  color:
+    var(--text);
+
+  background:
+    var(--soft);
+
+  border:
+    1px
+    solid
+    var(--line);
+
   border-radius:9px;
+
 }
 
 .modal-actions {
+
   display:flex;
-  justify-content:flex-end;
+
+  justify-content:
+    flex-end;
+
   gap:7px;
+
   margin-top:18px;
+
 }
 
 /* FORM STATUS */
 
 .form-status-buttons {
+
   display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0,1fr)
+    );
+
   gap:6px;
+
 }
 
 .form-status-btn {
+
   min-height:40px;
+
   padding:6px;
-  color:var(--muted);
-  background:var(--soft);
-  border:1px solid var(--line);
+
+  color:
+    var(--muted);
+
+  background:
+    var(--soft);
+
+  border:
+    1px
+    solid
+    var(--line);
+
   border-radius:8px;
+
   font-size:11px;
+
   font-weight:800;
+
 }
 
 .form-status-btn.active {
+
   color:white;
+
 }
 
 .form-status-btn.todo.active {
-  background:var(--todo);
+
+  background:
+    var(--todo);
+
 }
 
 .form-status-btn.progress.active {
-  background:var(--amber);
+
+  background:
+    var(--amber);
+
 }
 
 .form-status-btn.completed.active {
-  background:var(--green);
+
+  background:
+    var(--green);
+
 }
+
+/* TOAST */
 
 .toast {
+
   position:fixed;
+
   right:18px;
+
   bottom:18px;
+
   z-index:30;
-  padding:10px 12px;
-  background:var(--card);
-  border:1px solid var(--line);
-  border-left:4px solid var(--primary);
+
+  padding:
+    10px
+    12px;
+
+  background:
+    var(--card);
+
+  border:
+    1px
+    solid
+    var(--line);
+
+  border-left:
+    4px
+    solid
+    var(--primary);
+
   border-radius:9px;
-  box-shadow:var(--shadow);
+
+  box-shadow:
+    var(--shadow);
+
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
-@media(max-width:720px) {
+@media(
+  max-width:720px
+) {
 
   .stats {
-    grid-template-columns:repeat(2,1fr);
+
+    grid-template-columns:
+      repeat(
+        2,
+        1fr
+      );
+
   }
 
   .hero-top,
   .topbar {
-    align-items:flex-start;
-    flex-direction:column;
+
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
   }
 
   .score {
+
     width:100%;
+
   }
 
   .task {
-    grid-template-columns:28px minmax(0,1fr);
+
+    grid-template-columns:
+      28px
+      minmax(0,1fr);
+
   }
 
   .task-right {
-    grid-column:1/-1;
+
+    grid-column:
+      1 / -1;
+
   }
 
 }
 
-@media(max-width:480px) {
+@media(
+  max-width:480px
+) {
 
   .app {
-    width:calc(100% - 16px);
+
+    width:
+      calc(
+        100% - 16px
+      );
+
   }
 
   .workspace-head {
-    align-items:flex-start;
-    flex-direction:column;
+
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
   }
 
   .workspace-actions {
+
     width:100%;
+
   }
 
   .sort-select {
+
     flex:1;
+
     min-width:0;
+
   }
 
-  .workspace-actions .btn {
+  .workspace-actions
+  .btn {
+
     flex-shrink:0;
+
   }
 
   .form-status-buttons {
-    grid-template-columns:1fr;
+
+    grid-template-columns:
+      1fr;
+
   }
 
 }
+
 </style>
 </head>
 
+
 <body>
+
 
 <div class="app">
 
+
 <header class="topbar">
 
+
 <div class="brand">
+
 Project Tracker
-<small>One project, shared live progress</small>
+
+<small>
+One project, shared live progress
+</small>
+
 </div>
 
+
 <div class="actions">
+
 
 <button
 id="themeBtn"
@@ -795,62 +1723,91 @@ type="button"
 title="Toggle dark mode"
 aria-label="Toggle dark mode"
 >
+
 ◐
+
 </button>
+
 
 <button
 id="loginBtn"
 class="btn"
 type="button"
 >
+
 Owner Login
+
 </button>
+
 
 <button
 id="logoutBtn"
 class="btn hidden"
 type="button"
 >
+
 Logout
+
 </button>
+
 
 </div>
 
+
 </header>
+
+
+<!-- PROJECT -->
+
 
 <section class="hero">
 
+
 <div class="hero-top">
+
 
 <div>
 
+
 <p class="eyebrow">
+
 Current project
+
 </p>
+
 
 <div
 id="titleView"
 class="title-line"
 >
 
+
 <h1 id="projectTitle">
+
 Project Progress Tracker
+
 </h1>
+
 
 <button
 id="editTitleBtn"
 class="mini owner-only hidden"
 type="button"
 >
+
 Edit
+
 </button>
 
+
 </div>
+
 
 <div
 id="titleEdit"
 class="hidden"
 >
+
 
 <input
 id="titleInput"
@@ -858,226 +1815,401 @@ class="title-input"
 maxlength="120"
 >
 
+
 <div class="actions">
+
 
 <button
 id="saveTitleBtn"
 class="btn primary"
 type="button"
 >
+
 Save
+
 </button>
+
 
 <button
 id="cancelTitleBtn"
 class="btn"
 type="button"
 >
+
 Cancel
+
 </button>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 <p class="subtitle">
+
 Track project activities using To Do, In Progress, and Completed.
+
 </p>
+
 
 <span
 id="modeBadge"
 class="viewer-badge"
 >
+
 Read-only view
+
 </span>
 
+
 </div>
+
 
 <div class="score">
 
+
 <strong id="overall">
+
 0%
+
 </strong>
 
+
 <span>
+
 Complete
+
 </span>
 
-</div>
 
 </div>
+
+
+</div>
+
+
+<!-- PROGRESS BAR -->
+
 
 <div class="bar">
-<div id="overallBar"></div>
+
+<div id="overallBar">
 </div>
+
+</div>
+
 
 <div
 id="appStatus"
 class="status"
 >
+
 Opening project...
+
 </div>
 
+
 </section>
+
+
+<!-- STATS -->
+
 
 <section class="stats">
 
-<article class="stat">
-<strong id="totalStat">0</strong>
-<span>Total Tasks</span>
-</article>
 
 <article class="stat">
-<strong id="progressStat">0</strong>
-<span>In Progress</span>
+
+<strong id="totalStat">
+0
+</strong>
+
+<span>
+Total Tasks
+</span>
+
 </article>
 
-<article class="stat">
-<strong id="doneStat">0</strong>
-<span>Completed</span>
-</article>
 
 <article class="stat">
-<strong id="remainingStat">0</strong>
-<span>Remaining</span>
+
+<strong id="progressStat">
+0
+</strong>
+
+<span>
+In Progress
+</span>
+
 </article>
+
+
+<article class="stat">
+
+<strong id="doneStat">
+0
+</strong>
+
+<span>
+Completed
+</span>
+
+</article>
+
+
+<article class="stat">
+
+<strong id="remainingStat">
+0
+</strong>
+
+<span>
+Remaining
+</span>
+
+</article>
+
 
 </section>
 
+
+<!-- WORKSPACE -->
+
+
 <section class="workspace">
+
 
 <div class="workspace-head">
 
+
 <div>
 
+
 <h2>
+
 Project Activities
+
 </h2>
 
+
 <p id="workspaceInstruction">
+
 Sign in as Owner to update task status.
+
 </p>
+
 
 </div>
 
+
 <div class="workspace-actions">
+
 
 <select
 id="taskSort"
 class="sort-select"
-aria-label="Sort tasks"
-title="Sort tasks"
 >
 
+
 <option value="default">
+
 Sort: Default
+
 </option>
+
 
 <option value="priority-low">
+
 Priority: Low → High
+
 </option>
+
 
 <option value="priority-high">
+
 Priority: High → Low
+
 </option>
+
 
 <option value="status-forward">
+
 Status: To Do → Completed
+
 </option>
+
 
 <option value="status-reverse">
+
 Status: Completed → To Do
+
 </option>
 
+
 </select>
+
 
 <button
 id="addTaskBtn"
 class="btn primary owner-only hidden"
 type="button"
 >
+
 + Add Task
+
 </button>
 
-</div>
 
 </div>
+
+
+</div>
+
+
+<!-- FILTERS -->
+
 
 <div class="filters">
+
 
 <button
 class="filter active"
 data-filter="all"
 type="button"
 >
+
 All
-<span id="allFilterCount" class="filter-count">0</span>
+
+<span
+id="allFilterCount"
+class="filter-count"
+>
+
+0
+
+</span>
+
 </button>
+
 
 <button
 class="filter"
 data-filter="todo"
 type="button"
 >
+
 To Do
-<span id="todoFilterCount" class="filter-count">0</span>
+
+<span
+id="todoFilterCount"
+class="filter-count"
+>
+
+0
+
+</span>
+
 </button>
+
 
 <button
 class="filter"
 data-filter="progress"
 type="button"
 >
+
 In Progress
-<span id="progressFilterCount" class="filter-count">0</span>
+
+<span
+id="progressFilterCount"
+class="filter-count"
+>
+
+0
+
+</span>
+
 </button>
+
 
 <button
 class="filter"
 data-filter="completed"
 type="button"
 >
+
 Completed
-<span id="completedFilterCount" class="filter-count">0</span>
+
+<span
+id="completedFilterCount"
+class="filter-count"
+>
+
+0
+
+</span>
+
 </button>
 
+
 </div>
+
 
 <div
 id="taskList"
 class="tasks"
 >
 
+
 <div class="empty">
+
 Loading tasks...
-</div>
 
 </div>
+
+
+</div>
+
 
 </section>
 
+
 </div>
 
-<!-- LOGIN -->
+
+<!-- LOGIN MODAL -->
+
 
 <div
 id="loginModal"
 class="modal-bg"
 >
 
+
 <div class="modal">
 
+
 <h2>
+
 Owner Login
+
 </h2>
+
 
 <form id="loginForm">
 
+
 <div class="field">
 
+
 <label for="loginEmail">
+
 Email
+
 </label>
+
 
 <input
 id="loginEmail"
@@ -1085,13 +2217,19 @@ type="email"
 required
 >
 
+
 </div>
+
 
 <div class="field">
 
+
 <label for="loginPassword">
+
 Password
+
 </label>
+
 
 <input
 id="loginPassword"
@@ -1099,111 +2237,164 @@ type="password"
 required
 >
 
+
 </div>
 
+
 <div class="modal-actions">
+
 
 <button
 type="button"
 class="btn"
 data-close="loginModal"
 >
+
 Cancel
+
 </button>
+
 
 <button
 class="btn primary"
 type="submit"
 >
+
 Login
+
 </button>
 
+
 </div>
+
 
 </form>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 <!-- TASK MODAL -->
+
 
 <div
 id="taskModal"
 class="modal-bg"
 >
 
+
 <div class="modal">
 
+
 <h2 id="taskModalTitle">
+
 Add Task
+
 </h2>
 
+
 <form id="taskForm">
+
 
 <input
 id="taskId"
 type="hidden"
 >
 
+
 <div class="field">
 
-<label for="taskName">
+
+<label>
+
 Task Name
+
 </label>
+
 
 <input
 id="taskName"
 required
 >
 
+
 </div>
+
 
 <div class="field">
 
+
 <label>
+
 Priority
+
 </label>
+
 
 <select id="taskPriority">
 
+
 <option value="low">
+
 Low
+
 </option>
+
 
 <option
 value="medium"
 selected
 >
+
 Medium
+
 </option>
 
+
 <option value="high">
+
 High
+
 </option>
+
 
 </select>
 
+
 </div>
+
 
 <div class="field">
 
+
 <label>
+
 Due Date
+
 </label>
+
 
 <input
 id="taskDue"
 type="date"
 >
 
+
 </div>
+
 
 <div class="field">
 
+
 <label>
+
 Status
+
 </label>
+
 
 <input
 id="taskProgress"
@@ -1211,62 +2402,90 @@ type="hidden"
 value="0"
 >
 
+
 <div class="form-status-buttons">
+
 
 <button
 class="form-status-btn todo active"
 data-form-status="0"
 type="button"
 >
+
 To Do
+
 </button>
+
 
 <button
 class="form-status-btn progress"
 data-form-status="50"
 type="button"
 >
+
 In Progress
+
 </button>
+
 
 <button
 class="form-status-btn completed"
 data-form-status="100"
 type="button"
 >
+
 Completed
+
 </button>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 <div class="modal-actions">
+
 
 <button
 type="button"
 class="btn"
 data-close="taskModal"
 >
+
 Cancel
+
 </button>
+
 
 <button
 class="btn primary"
 type="submit"
 >
+
 Save
+
 </button>
 
+
 </div>
+
 
 </form>
 
-</div>
 
 </div>
+
+
+</div>
+
+
+<!-- SUPABASE -->
+
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
 <script>
 
@@ -1274,29 +2493,41 @@ Save
 
 "use strict";
 
+
+/* =========================
+   SUPABASE
+========================= */
+
+
 const SUPABASE_URL =
 "https://vfkjdccpqmzdfzmrvgmh.supabase.co";
+
 
 const SUPABASE_PUBLISHABLE_KEY =
 "sb_publishable_f2DO1NWMbF63qCRhJ9dtFQ_vwT4vY7o";
 
+
 const OWNER_UID =
 "3395445c-e7ea-4fa9-93c0-38435563b729";
+
 
 const $ =
 id =>
 document.getElementById(id);
 
+
 let sb = null;
+
 let project = null;
+
 let tasks = [];
+
 let user = null;
 
 let filter = "all";
 
-/* NEW SORT */
-
 let sortMode = "default";
+
 
 const isOwner =
 () =>
@@ -1305,95 +2536,211 @@ user &&
 user.id === OWNER_UID
 );
 
-function normalizeProgress(value) {
+
+/* =========================
+   STATUS
+========================= */
+
+
+function normalizeProgress(
+value
+) {
+
 
 const number =
 Number(value) || 0;
 
-if (number >= 100) {
+
+if (
+number >= 100
+) {
+
 return 100;
+
 }
 
-if (number > 0) {
+
+if (
+number > 0
+) {
+
 return 50;
+
 }
+
 
 return 0;
 
+
 }
 
-function statusName(progress) {
 
-if (progress === 100) {
+function statusName(
+progress
+) {
+
+
+if (
+progress === 100
+) {
+
 return "Completed";
+
 }
 
-if (progress === 50) {
+
+if (
+progress === 50
+) {
+
 return "In Progress";
+
 }
+
 
 return "To Do";
 
+
 }
 
-function statusClass(progress) {
 
-if (progress === 100) {
+function statusClass(
+progress
+) {
+
+
+if (
+progress === 100
+) {
+
 return "completed";
+
 }
 
-if (progress === 50) {
+
+if (
+progress === 50
+) {
+
 return "progress";
+
 }
+
 
 return "todo";
 
+
 }
 
-function statusIcon(progress) {
 
-if (progress === 100) {
+function statusIcon(
+progress
+) {
+
+
+if (
+progress === 100
+) {
+
 return "✓";
+
 }
 
-if (progress === 50) {
+
+if (
+progress === 50
+) {
+
 return "◐";
+
 }
+
 
 return "○";
 
-}
-
-function escapeHtml(value) {
-
-return String(value ?? "")
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
 
 }
 
-function capitalize(value) {
 
-const text =
-String(value || "");
+/* =========================
+   HELPERS
+========================= */
 
-return (
-text.charAt(0).toUpperCase() +
-text.slice(1)
+
+function escapeHtml(
+value
+) {
+
+
+return String(
+value ?? ""
+)
+
+.replaceAll(
+"&",
+"&amp;"
+)
+
+.replaceAll(
+"<",
+"&lt;"
+)
+
+.replaceAll(
+">",
+"&gt;"
+)
+
+.replaceAll(
+'"',
+"&quot;"
+)
+
+.replaceAll(
+"'",
+"&#039;"
 );
 
+
 }
+
+
+function capitalize(
+value
+) {
+
+
+const text =
+String(
+value || ""
+);
+
+
+return (
+
+text.charAt(0)
+.toUpperCase()
+
++
+
+text.slice(1)
+
+);
+
+
+}
+
 
 function setStatus(
 message,
 error = false
 ) {
 
-$("appStatus").textContent =
+
+$("appStatus")
+.textContent =
 message;
+
 
 $("appStatus")
 .classList
@@ -1402,21 +2749,34 @@ $("appStatus")
 error
 );
 
+
 }
 
-function toast(message) {
+
+function toast(
+message
+) {
+
 
 const element =
-document.createElement("div");
+document.createElement(
+"div"
+);
+
 
 element.className =
 "toast";
 
+
 element.textContent =
 message;
 
+
 document.body
-.appendChild(element);
+.appendChild(
+element
+);
+
 
 setTimeout(
 () =>
@@ -1424,33 +2784,71 @@ element.remove(),
 3000
 );
 
+
 }
 
-function openModal(id) {
-$(id).classList.add("open");
+
+function openModal(
+id
+) {
+
+
+$(id)
+.classList
+.add(
+"open"
+);
+
+
 }
 
-function closeModal(id) {
-$(id).classList.remove("open");
+
+function closeModal(
+id
+) {
+
+
+$(id)
+.classList
+.remove(
+"open"
+);
+
+
 }
 
-/* OWNER MODE */
+
+/* =========================
+   OWNER MODE
+========================= */
+
 
 function updateMode() {
+
 
 const owner =
 isOwner();
 
-document
-.querySelectorAll(".owner-only")
-.forEach(element => {
 
-element.classList.toggle(
+document
+.querySelectorAll(
+".owner-only"
+)
+.forEach(
+element => {
+
+
+element
+.classList
+.toggle(
 "hidden",
 !owner
 );
 
-});
+
+}
+);
+
 
 $("loginBtn")
 .classList
@@ -1459,6 +2857,7 @@ $("loginBtn")
 Boolean(user)
 );
 
+
 $("logoutBtn")
 .classList
 .toggle(
@@ -1466,29 +2865,43 @@ $("logoutBtn")
 !user
 );
 
-$("modeBadge").textContent =
+
+$("modeBadge")
+.textContent =
+
 owner
 ? "Owner edit mode"
 : "Read-only view";
 
+
 $("workspaceInstruction")
 .textContent =
+
 owner
 ? "Click a task status to change it."
 : "Sign in as Owner to update task status.";
 
+
 renderTasks();
+
 
 }
 
-/* FILTER COUNTS */
+
+/* =========================
+   COUNTS
+========================= */
+
 
 function updateFilterCounts() {
+
 
 const all =
 tasks.length;
 
+
 const todo =
+
 tasks.filter(
 task =>
 normalizeProgress(
@@ -1496,7 +2909,9 @@ task.progress
 ) === 0
 ).length;
 
+
 const progress =
+
 tasks.filter(
 task =>
 normalizeProgress(
@@ -1504,45 +2919,61 @@ task.progress
 ) === 50
 ).length;
 
+
 const completed =
+
 tasks.filter(
 task =>
 normalizeProgress(
 task.progress
 ) === 100
 ).length;
+
 
 $("allFilterCount")
 .textContent =
 all;
 
+
 $("todoFilterCount")
 .textContent =
 todo;
+
 
 $("progressFilterCount")
 .textContent =
 progress;
 
+
 $("completedFilterCount")
 .textContent =
 completed;
 
+
 }
 
-/* RENDER */
+
+/* =========================
+   RENDER
+========================= */
+
 
 function render() {
 
+
 $("projectTitle")
 .textContent =
+
 project?.title ||
 "Project Progress Tracker";
+
 
 const total =
 tasks.length;
 
+
 const completed =
+
 tasks.filter(
 task =>
 normalizeProgress(
@@ -1550,7 +2981,9 @@ task.progress
 ) === 100
 ).length;
 
+
 const inProgress =
+
 tasks.filter(
 task =>
 normalizeProgress(
@@ -1558,147 +2991,263 @@ task.progress
 ) === 50
 ).length;
 
+
 let overall = 0;
 
-if (total > 0) {
+
+if (
+total > 0
+) {
+
 
 const totalProgress =
+
 tasks.reduce(
-(sum,task) =>
+(
+sum,
+task
+) =>
+
 sum +
 normalizeProgress(
 task.progress
 ),
+
 0
 );
 
+
 overall =
+
 Math.round(
+
 totalProgress /
+
 total
+
 );
+
 
 }
 
-$("overall").textContent =
+
+/* UPDATE PERCENTAGE */
+
+
+$("overall")
+.textContent =
 overall + "%";
 
-$("overallBar").style.width =
+
+/* UPDATE BAR + GLOW POSITION */
+
+
+$("overallBar")
+.style.width =
 overall + "%";
 
-$("totalStat").textContent =
+
+/* HIDE GLOW IF THERE ARE NO TASKS */
+
+
+$("overallBar")
+.classList
+.toggle(
+"no-progress",
+overall === 0
+);
+
+
+$("totalStat")
+.textContent =
 total;
 
-$("progressStat").textContent =
+
+$("progressStat")
+.textContent =
 inProgress;
 
-$("doneStat").textContent =
+
+$("doneStat")
+.textContent =
 completed;
 
-$("remainingStat").textContent =
+
+$("remainingStat")
+.textContent =
 total - completed;
+
 
 updateFilterCounts();
 
+
 renderTasks();
+
 
 }
 
-/* FILTER + SORT */
+
+/* =========================
+   FILTER + SORT
+========================= */
+
 
 function visibleTasks() {
 
+
 let visible =
-tasks.filter(task => {
+
+tasks.filter(
+task => {
+
 
 const progress =
+
 normalizeProgress(
 task.progress
 );
 
-if (filter === "todo") {
-return progress === 0;
+
+if (
+filter === "todo"
+) {
+
+return (
+progress === 0
+);
+
 }
 
-if (filter === "progress") {
-return progress === 50;
+
+if (
+filter === "progress"
+) {
+
+return (
+progress === 50
+);
+
 }
 
-if (filter === "completed") {
-return progress === 100;
+
+if (
+filter === "completed"
+) {
+
+return (
+progress === 100
+);
+
 }
+
 
 return true;
 
-});
 
+}
+);
 
-/* PRIORITY ORDER */
 
 const priorityOrder = {
+
 low:1,
+
 medium:2,
+
 high:3
+
 };
 
 
-/* LOW → HIGH */
+/* LOW TO HIGH */
+
 
 if (
 sortMode ===
 "priority-low"
 ) {
 
-visible.sort(
-(a,b) =>
 
-(priorityOrder[
+visible.sort(
+(
+a,
+b
+) =>
+
+
+(
+priorityOrder[
 a.priority
-] || 2)
+] || 2
+)
 
 -
 
-(priorityOrder[
+(
+priorityOrder[
 b.priority
-] || 2)
+] || 2
+)
+
+
 );
+
 
 }
 
 
-/* HIGH → LOW */
+/* HIGH TO LOW */
+
 
 if (
 sortMode ===
 "priority-high"
 ) {
 
-visible.sort(
-(a,b) =>
 
-(priorityOrder[
+visible.sort(
+(
+a,
+b
+) =>
+
+
+(
+priorityOrder[
 b.priority
-] || 2)
+] || 2
+)
 
 -
 
-(priorityOrder[
+(
+priorityOrder[
 a.priority
-] || 2)
+] || 2
+)
+
+
 );
+
 
 }
 
 
-/* TODO → PROGRESS → COMPLETED */
+/* TODO TO COMPLETED */
+
 
 if (
 sortMode ===
 "status-forward"
 ) {
 
+
 visible.sort(
-(a,b) =>
+(
+a,
+b
+) =>
+
 
 normalizeProgress(
 a.progress
@@ -1709,20 +3258,29 @@ a.progress
 normalizeProgress(
 b.progress
 )
+
+
 );
+
 
 }
 
 
-/* COMPLETED → PROGRESS → TODO */
+/* COMPLETED TO TODO */
+
 
 if (
 sortMode ===
 "status-reverse"
 ) {
 
+
 visible.sort(
-(a,b) =>
+(
+a,
+b
+) =>
+
 
 normalizeProgress(
 b.progress
@@ -1733,324 +3291,541 @@ b.progress
 normalizeProgress(
 a.progress
 )
+
+
 );
+
 
 }
 
 
 return visible;
 
+
 }
 
-/* TASK DISPLAY */
+
+/* =========================
+   TASKS
+========================= */
+
 
 function renderTasks() {
+
 
 const container =
 $("taskList");
 
+
 const owner =
 isOwner();
+
 
 const visible =
 visibleTasks();
 
-if (!visible.length) {
+
+if (
+!visible.length
+) {
+
 
 container.innerHTML =
-'<div class="empty">No tasks found.</div>';
+
+'<div class="empty">' +
+
+'No tasks found.' +
+
+'</div>';
+
 
 return;
 
+
 }
 
+
 container.innerHTML =
-visible.map(task => {
+
+visible.map(
+task => {
+
 
 const progress =
+
 normalizeProgress(
 task.progress
 );
 
+
 const priority =
+
 task.priority ||
 
 "medium";
 
+
 const cardClass =
+
 progress === 100
 ? "done"
+
 : progress === 50
 ? "in-progress"
+
 : "";
 
+
 const name =
+
 statusName(
 progress
 );
 
+
 const className =
+
 statusClass(
 progress
 );
 
+
 const icon =
+
 statusIcon(
 progress
 );
 
+
 return `
 
-<article class="task ${cardClass}">
+
+<article
+class="task ${cardClass}"
+>
+
 
 <div class="task-icon">
+
 ${icon}
+
 </div>
+
 
 <div class="task-main">
 
+
 <div class="task-name">
-${escapeHtml(task.name)}
+
+${escapeHtml(
+task.name
+)}
+
 </div>
+
 
 <div class="meta">
 
-<span class="tag ${priority}">
-${capitalize(priority)}
+
+<span
+class="tag ${priority}"
+>
+
+${capitalize(
+priority
+)}
+
 </span>
+
 
 <span>
+
 ${
 task.due_date
-? "Due " + escapeHtml(task.due_date)
+
+? "Due " +
+escapeHtml(
+task.due_date
+)
+
 : "No due date"
 }
+
 </span>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 <div class="task-right">
 
+
 <div class="status-picker">
 
+
 <button
-class="current-status ${className}"
+
+class="
+current-status
+${className}
+"
+
 data-status-toggle="${task.id}"
+
 type="button"
-${owner ? "" : "disabled"}
+
+${
+owner
+? ""
+: "disabled"
+}
+
 >
+
 
 ${icon}
 
+
 ${name}
 
-${owner ? " ▾" : ""}
+
+${
+owner
+? " ▾"
+: ""
+}
+
 
 </button>
+
 
 ${
 owner
 ? `
+
 
 <div
 class="status-menu"
 data-status-menu="${task.id}"
 >
 
+
 <button
-class="status-option todo"
+
+class="
+status-option
+todo
+"
+
 data-status-id="${task.id}"
+
 data-status-value="0"
+
 type="button"
+
 >
+
 ○ To Do
+
 </button>
 
+
 <button
-class="status-option progress"
+
+class="
+status-option
+progress
+"
+
 data-status-id="${task.id}"
+
 data-status-value="50"
+
 type="button"
+
 >
+
 ◐ In Progress
+
 </button>
 
+
 <button
-class="status-option completed"
+
+class="
+status-option
+completed
+"
+
 data-status-id="${task.id}"
+
 data-status-value="100"
+
 type="button"
+
 >
+
 ✓ Completed
+
 </button>
+
 
 </div>
+
 
 `
 : ""
 }
 
+
 </div>
+
 
 ${
 owner
 ? `
+
 
 <button
 class="mini"
 data-edit="${task.id}"
 type="button"
 >
+
 Edit
+
 </button>
+
 
 <button
 class="mini"
 data-delete="${task.id}"
 type="button"
 >
+
 Delete
+
 </button>
+
 
 `
 : ""
 }
 
+
 </div>
+
 
 </article>
 
+
 `;
 
-}).join("");
+
+}
+).join("");
 
 
-if (!owner) {
+
+if (
+!owner
+) {
+
 return;
+
 }
 
 
 /* STATUS MENU */
 
+
 container
 .querySelectorAll(
 "[data-status-toggle]"
 )
-.forEach(button => {
+.forEach(
+button => {
+
 
 button.onclick =
 event => {
 
+
 event.stopPropagation();
 
+
 const id =
-button.dataset.statusToggle;
+
+button.dataset
+.statusToggle;
+
 
 const menu =
-container.querySelector(
+
+container
+.querySelector(
+
 `[data-status-menu="${id}"]`
+
 );
+
 
 container
 .querySelectorAll(
 ".status-menu"
 )
-.forEach(item => {
+.forEach(
+item => {
 
-if (item !== menu) {
-item.classList.remove("open");
+
+if (
+item !== menu
+) {
+
+item
+.classList
+.remove(
+"open"
+);
+
 }
 
-});
 
-menu.classList.toggle("open");
+}
+);
+
+
+menu
+.classList
+.toggle(
+"open"
+);
+
 
 };
 
-});
+
+}
+);
 
 
-/* STATUS CHANGE */
+/* CHANGE STATUS */
+
 
 container
 .querySelectorAll(
 "[data-status-id]"
 )
-.forEach(button => {
+.forEach(
+button => {
+
 
 button.onclick =
 async event => {
 
+
 event.stopPropagation();
+
 
 await saveProgress(
 
-button.dataset.statusId,
+button.dataset
+.statusId,
 
 Number(
-button.dataset.statusValue
+button.dataset
+.statusValue
 )
 
 );
 
+
 };
 
-});
+
+}
+);
 
 
 /* EDIT */
+
 
 container
 .querySelectorAll(
 "[data-edit]"
 )
-.forEach(button => {
+.forEach(
+button => {
+
 
 button.onclick =
 () =>
+
 openTask(
 button.dataset.edit
 );
 
-});
+
+}
+);
 
 
 /* DELETE */
+
 
 container
 .querySelectorAll(
 "[data-delete]"
 )
-.forEach(button => {
+.forEach(
+button => {
+
 
 button.onclick =
 () =>
+
 deleteTask(
 button.dataset.delete
 );
 
-});
+
+}
+);
+
 
 }
 
-/* LOAD DATA */
+
+/* =========================
+   LOAD DATA
+========================= */
+
 
 async function loadData() {
 
+
 setStatus(
+
 "Loading shared project data..."
+
 );
+
 
 const [
 projectResult,
 taskResult
 ] =
+
 await Promise.all([
 
+
 sb
-.from("projects")
+.from(
+"projects"
+)
 .select(
 "id,title,created_at"
 )
@@ -2060,10 +3835,15 @@ sb
 ascending:true
 }
 )
-.limit(1),
+.limit(
+1
+),
+
 
 sb
-.from("tasks")
+.from(
+"tasks"
+)
 .select(
 "id,name,priority,due_date,progress,created_at"
 )
@@ -2074,79 +3854,130 @@ ascending:true
 }
 )
 
+
 ]);
+
 
 if (
 projectResult.error ||
 taskResult.error
 ) {
 
+
 const error =
+
 projectResult.error ||
 taskResult.error;
 
+
 setStatus(
+
 error.message,
+
 true
+
 );
+
 
 return;
 
+
 }
 
+
 project =
-projectResult.data?.[0] ||
+
+projectResult
+.data?.[0] ||
+
 null;
 
+
 tasks =
+
 taskResult.data ||
+
 [];
+
 
 render();
 
+
 setStatus(
+
 "Last updated: " +
+
 new Date()
 .toLocaleString()
+
 );
+
 
 }
 
-/* SAVE STATUS */
+
+/* =========================
+   SAVE STATUS
+========================= */
+
 
 async function saveProgress(
 id,
 progress
 ) {
 
-const {error} =
+
+const {
+error
+} =
+
 await sb
-.from("tasks")
+
+.from(
+"tasks"
+)
+
 .update({
 progress
 })
+
 .eq(
 "id",
 id
 );
 
-if (error) {
+
+if (
+error
+) {
+
 
 toast(
 error.message
 );
 
+
 return;
 
+
 }
+
 
 await loadData();
 
+
 }
 
-/* DELETE */
 
-async function deleteTask(id) {
+/* =========================
+   DELETE
+========================= */
+
+
+async function deleteTask(
+id
+) {
+
 
 if (
 !confirm(
@@ -2158,262 +3989,459 @@ return;
 
 }
 
-const {error} =
+
+const {
+error
+} =
+
 await sb
-.from("tasks")
+
+.from(
+"tasks"
+)
+
 .delete()
+
 .eq(
 "id",
 id
 );
 
-if (error) {
+
+if (
+error
+) {
+
 
 toast(
 error.message
 );
 
+
 return;
 
+
 }
+
 
 await loadData();
 
+
 }
 
-/* FORM STATUS */
 
-function setFormStatus(value) {
+/* =========================
+   FORM STATUS
+========================= */
+
+
+function setFormStatus(
+value
+) {
+
 
 const progress =
+
 normalizeProgress(
 value
 );
 
-$("taskProgress").value =
-String(progress);
+
+$("taskProgress")
+.value =
+
+String(
+progress
+);
+
 
 document
 .querySelectorAll(
 "[data-form-status]"
 )
-.forEach(button => {
+.forEach(
+button => {
 
-button.classList.toggle(
+
+button
+.classList
+.toggle(
 
 "active",
 
 Number(
-button.dataset.formStatus
+button.dataset
+.formStatus
 ) === progress
 
 );
 
-});
 
 }
+);
+
+
+}
+
 
 document
 .querySelectorAll(
 "[data-form-status]"
 )
-.forEach(button => {
+.forEach(
+button => {
+
 
 button.onclick =
 () =>
 
+
 setFormStatus(
+
 Number(
-button.dataset.formStatus
+button.dataset
+.formStatus
 )
+
 );
 
-});
 
-/* OPEN TASK */
+}
+);
 
-function openTask(id) {
+
+/* =========================
+   OPEN TASK
+========================= */
+
+
+function openTask(
+id
+) {
+
 
 const task =
+
 tasks.find(
 item =>
-String(item.id) ===
-String(id)
+
+String(
+item.id
+)
+
+===
+
+String(
+id
+)
+
 );
 
-$("taskId").value =
+
+$("taskId")
+.value =
+
 task?.id ||
+
 "";
 
-$("taskName").value =
+
+$("taskName")
+.value =
+
 task?.name ||
+
 "";
 
-$("taskPriority").value =
+
+$("taskPriority")
+.value =
+
 task?.priority ||
+
 "medium";
 
-$("taskDue").value =
+
+$("taskDue")
+.value =
+
 task?.due_date ||
+
 "";
 
+
 setFormStatus(
+
 task?.progress ||
+
 0
+
 );
 
-$("taskModalTitle").textContent =
+
+$("taskModalTitle")
+.textContent =
+
 task
+
 ? "Edit Task"
+
 : "Add Task";
+
 
 openModal(
 "taskModal"
 );
 
+
 }
 
-/* SAVE TASK */
 
-$("taskForm").onsubmit =
+/* =========================
+   SAVE TASK
+========================= */
+
+
+$("taskForm")
+.onsubmit =
+
 async event => {
 
-event.preventDefault();
+
+event
+.preventDefault();
+
 
 const id =
-$("taskId").value;
+
+$("taskId")
+.value;
+
 
 const payload = {
 
+
 name:
+
 $("taskName")
 .value
 .trim(),
 
+
 priority:
+
 $("taskPriority")
 .value,
 
+
 due_date:
+
 $("taskDue")
 .value ||
+
 null,
 
+
 progress:
+
 Number(
 $("taskProgress")
 .value
 )
 
+
 };
 
+
 const result =
+
 id
 
+
 ? await sb
-.from("tasks")
-.update(payload)
+
+.from(
+"tasks"
+)
+
+.update(
+payload
+)
+
 .eq(
 "id",
 id
 )
 
+
 : await sb
-.from("tasks")
-.insert(payload);
+
+.from(
+"tasks"
+)
+
+.insert(
+payload
+);
+
 
 if (
 result.error
 ) {
 
+
 toast(
 result.error.message
 );
 
+
 return;
 
+
 }
+
 
 closeModal(
 "taskModal"
 );
 
+
 await loadData();
+
 
 };
 
-/* LOGIN */
 
-$("loginForm").onsubmit =
+/* =========================
+   LOGIN
+========================= */
+
+
+$("loginForm")
+.onsubmit =
+
 async event => {
 
-event.preventDefault();
 
-const {error} =
+event
+.preventDefault();
+
+
+const {
+error
+} =
+
 await sb.auth
 .signInWithPassword({
 
+
 email:
+
 $("loginEmail")
 .value
 .trim(),
 
+
 password:
+
 $("loginPassword")
 .value
 
+
 });
 
-if (error) {
+
+if (
+error
+) {
+
 
 toast(
 error.message
 );
 
+
 return;
+
 
 }
 
-$("loginPassword").value =
+
+$("loginPassword")
+.value =
+
 "";
+
 
 closeModal(
 "loginModal"
 );
 
+
 };
 
-/* BUTTONS */
 
-$("loginBtn").onclick =
+/* =========================
+   MAIN BUTTONS
+========================= */
+
+
+$("loginBtn")
+.onclick =
+
 () =>
+
 openModal(
 "loginModal"
 );
 
-$("logoutBtn").onclick =
-async () =>
+
+$("logoutBtn")
+.onclick =
+
+async () => {
+
+
 await sb.auth
 .signOut();
 
-$("addTaskBtn").onclick =
+
+};
+
+
+$("addTaskBtn")
+.onclick =
+
 () =>
+
 openTask();
 
-/* TITLE */
 
-$("editTitleBtn").onclick =
+/* =========================
+   TITLE
+========================= */
+
+
+$("editTitleBtn")
+.onclick =
+
 () => {
 
-$("titleInput").value =
+
+$("titleInput")
+.value =
+
 project?.title ||
+
 "";
 
+
 $("titleView")
 .classList
 .add(
 "hidden"
 );
+
 
 $("titleEdit")
 .classList
@@ -2421,16 +4449,22 @@ $("titleEdit")
 "hidden"
 );
 
+
 };
 
-$("cancelTitleBtn").onclick =
+
+$("cancelTitleBtn")
+.onclick =
+
 () => {
 
+
 $("titleView")
 .classList
 .remove(
 "hidden"
 );
+
 
 $("titleEdit")
 .classList
@@ -2438,80 +4472,125 @@ $("titleEdit")
 "hidden"
 );
 
+
 };
 
-$("saveTitleBtn").onclick =
+
+$("saveTitleBtn")
+.onclick =
+
 async () => {
 
+
 const title =
+
 $("titleInput")
 .value
 .trim();
 
-if (!title) {
+
+if (
+!title
+) {
+
 return;
+
 }
 
+
 const result =
+
 project
 
+
 ? await sb
-.from("projects")
+
+.from(
+"projects"
+)
+
 .update({
 title
 })
+
 .eq(
 "id",
 project.id
 )
 
+
 : await sb
-.from("projects")
+
+.from(
+"projects"
+)
+
 .insert({
 title
 });
 
-if (result.error) {
+
+if (
+result.error
+) {
+
 
 toast(
 result.error.message
 );
 
+
 return;
 
+
 }
+
 
 $("cancelTitleBtn")
 .click();
 
+
 await loadData();
+
 
 };
 
-/* FILTERS */
+
+/* =========================
+   FILTER
+========================= */
+
 
 document
 .querySelectorAll(
 ".filter"
 )
-.forEach(button => {
+.forEach(
+button => {
+
 
 button.onclick =
 () => {
 
+
 document
 .querySelectorAll(
 ".filter"
 )
-.forEach(item =>
+.forEach(
+item => {
+
 
 item
 .classList
 .remove(
 "active"
-)
-
 );
+
+
+}
+);
+
 
 button
 .classList
@@ -2519,94 +4598,145 @@ button
 "active"
 );
 
+
 filter =
-button.dataset.filter;
+
+button.dataset
+.filter;
+
 
 renderTasks();
 
+
 };
 
-});
 
-/* NEW SORT EVENT */
+}
+);
 
-$("taskSort").onchange =
+
+/* =========================
+   SORT
+========================= */
+
+
+$("taskSort")
+.onchange =
+
 () => {
 
+
 sortMode =
-$("taskSort").value;
+
+$("taskSort")
+.value;
+
 
 renderTasks();
 
+
 };
 
-/* MODAL CLOSE */
+
+/* =========================
+   MODALS
+========================= */
+
 
 document
 .querySelectorAll(
 "[data-close]"
 )
-.forEach(button => {
+.forEach(
+button => {
+
 
 button.onclick =
 () =>
+
 closeModal(
 button.dataset.close
 );
 
-});
+
+}
+);
+
 
 document
 .querySelectorAll(
 ".modal-bg"
 )
-.forEach(modal => {
+.forEach(
+modal => {
+
 
 modal.onclick =
 event => {
+
 
 if (
 event.target === modal
 ) {
 
+
 closeModal(
 modal.id
 );
 
+
 }
+
 
 };
 
-});
 
-/* STATUS MENU CLOSE */
+}
+);
+
+
+/* CLOSE STATUS MENU */
+
 
 document
 .addEventListener(
 "click",
 () => {
 
+
 document
 .querySelectorAll(
 ".status-menu"
 )
-.forEach(menu =>
+.forEach(
+menu => {
+
 
 menu
 .classList
 .remove(
 "open"
-)
-
 );
+
 
 }
 );
 
-/* THEME */
 
-$("themeBtn").onclick =
+}
+);
+
+
+/* =========================
+   THEME
+========================= */
+
+
+$("themeBtn")
+.onclick =
+
 () => {
+
 
 document.body
 .classList
@@ -2614,10 +4744,13 @@ document.body
 "dark"
 );
 
+
 localStorage
 .setItem(
 
+
 "ppt_theme",
+
 
 document.body
 .classList
@@ -2625,25 +4758,40 @@ document.body
 "dark"
 )
 
+
 ? "dark"
+
 
 : "light"
 
+
 );
+
 
 };
 
-/* START */
+
+/* =========================
+   START
+========================= */
+
 
 async function init() {
 
+
 if (
+
 localStorage
 .getItem(
 "ppt_theme"
-) ===
+)
+
+===
+
 "dark"
+
 ) {
+
 
 document.body
 .classList
@@ -2651,24 +4799,38 @@ document.body
 "dark"
 );
 
+
 }
+
+
+/* SUPABASE SAFETY */
+
 
 if (
 !window.supabase
 ) {
 
+
 setStatus(
+
 "Supabase could not load.",
+
 true
+
 );
+
 
 return;
 
+
 }
+
 
 try {
 
+
 sb =
+
 window.supabase
 .createClient(
 
@@ -2678,63 +4840,107 @@ SUPABASE_PUBLISHABLE_KEY
 
 );
 
+
+/* SESSION */
+
+
 const {
+
 data:{
 session
 }
+
 } =
+
 await sb.auth
 .getSession();
 
+
 user =
+
 session?.user ||
+
 null;
+
 
 updateMode();
 
+
+/* DATA */
+
+
 await loadData();
+
+
+/* LOGIN CHANGES */
+
 
 sb.auth
 .onAuthStateChange(
+
 
 async (
 _event,
 session
 ) => {
 
+
 user =
+
 session?.user ||
+
 null;
+
 
 updateMode();
 
+
 await loadData();
+
 
 }
 
+
 );
 
-} catch(error) {
+
+} catch(
+error
+) {
+
 
 console.error(
 error
 );
 
+
 setStatus(
+
 "Application error: " +
+
 error.message,
+
 true
+
 );
 
-}
 
 }
+
+
+}
+
+
+/* START APP */
+
 
 init();
+
 
 })();
 
 </script>
+
 
 </body>
 </html>
