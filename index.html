@@ -354,4 +354,2495 @@ button:disabled {
   box-shadow:0 2px 7px rgba(0,0,0,.06);
 }
 
-.filter
+.filter-count {
+  display:inline-grid;
+  place-items:center;
+  min-width:20px;
+  height:20px;
+  padding:0 6px;
+  color:var(--muted);
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:999px;
+  font-size:10px;
+  font-weight:850;
+}
+
+.filter.active .filter-count {
+  color:white;
+  background:var(--primary);
+  border-color:var(--primary);
+}
+
+/* TASK LIST */
+
+.tasks {
+  display:grid;
+  gap:7px;
+}
+
+.task {
+  position:relative;
+  display:grid;
+  grid-template-columns:34px minmax(0,1fr) auto;
+  align-items:center;
+  gap:10px;
+  min-height:68px;
+  padding:10px 12px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:11px;
+  transition:
+    border-color .2s,
+    background .2s;
+}
+
+.task:hover {
+  border-color:var(--primary);
+}
+
+.task.done {
+  background:rgba(21,155,99,.05);
+  border-color:rgba(21,155,99,.25);
+}
+
+.task.in-progress {
+  border-color:rgba(217,119,6,.25);
+}
+
+.task.read-only {
+  background:var(--card);
+}
+
+/* DECORATIVE STATUS ICON */
+
+.task-icon {
+  width:28px;
+  height:28px;
+  display:grid;
+  place-items:center;
+  color:var(--todo);
+  background:var(--soft);
+  border:2px solid var(--todo);
+  border-radius:50%;
+  font-size:13px;
+  font-weight:900;
+}
+
+.task.in-progress .task-icon {
+  color:var(--amber);
+  border-color:var(--amber);
+}
+
+.task.done .task-icon {
+  color:white;
+  background:var(--green);
+  border-color:var(--green);
+}
+
+.task.read-only .task-icon {
+  opacity:.78;
+}
+
+/* TASK INFORMATION */
+
+.task-main {
+  min-width:0;
+}
+
+.task-name {
+  overflow:hidden;
+  color:var(--text);
+  font-size:14px;
+  font-weight:800;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.task.done .task-name {
+  color:var(--muted);
+  text-decoration:line-through;
+}
+
+.meta {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:10px;
+}
+
+.tag {
+  padding:3px 7px;
+  border-radius:999px;
+  font-size:10px;
+  font-weight:800;
+}
+
+.tag.low {
+  color:var(--green);
+  background:rgba(21,155,99,.12);
+}
+
+.tag.medium {
+  color:var(--amber);
+  background:rgba(217,119,6,.12);
+}
+
+.tag.high {
+  color:var(--red);
+  background:rgba(220,53,69,.12);
+}
+
+/* TASK RIGHT SIDE */
+
+.task-right {
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+  gap:6px;
+}
+
+/* STATUS SELECTOR */
+
+.status-picker {
+  position:relative;
+}
+
+.current-status {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  min-width:116px;
+  min-height:32px;
+  padding:0 10px;
+  color:var(--muted);
+  background:var(--soft);
+  border:1px solid var(--line);
+  border-radius:8px;
+  font-size:11px;
+  font-weight:800;
+}
+
+.current-status.todo {
+  color:var(--todo);
+}
+
+.current-status.progress {
+  color:var(--amber);
+}
+
+.current-status.completed {
+  color:var(--green);
+}
+
+.current-status:hover:not(:disabled) {
+  border-color:var(--primary);
+}
+
+.current-status:disabled {
+  cursor:not-allowed;
+  opacity:.72;
+  background:var(--soft);
+}
+
+.task.read-only .current-status {
+  pointer-events:none;
+}
+
+/* STATUS DROPDOWN */
+
+.status-menu {
+  position:absolute;
+  top:calc(100% + 5px);
+  right:0;
+  z-index:10;
+  display:none;
+  width:145px;
+  padding:5px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:10px;
+  box-shadow:0 12px 30px rgba(0,0,0,.15);
+}
+
+.status-menu.open {
+  display:grid;
+  gap:3px;
+}
+
+.status-option {
+  width:100%;
+  min-height:33px;
+  padding:0 9px;
+  text-align:left;
+  color:var(--muted);
+  background:transparent;
+  border:0;
+  border-radius:7px;
+  font-size:11px;
+  font-weight:750;
+}
+
+.status-option:hover {
+  color:var(--text);
+  background:var(--soft);
+}
+
+.status-option.todo {
+  color:var(--todo);
+}
+
+.status-option.progress {
+  color:var(--amber);
+}
+
+.status-option.completed {
+  color:var(--green);
+}
+
+/* EMPTY STATE */
+
+.empty {
+  padding:36px;
+  text-align:center;
+  color:var(--muted);
+  background:var(--soft);
+  border-radius:11px;
+  font-size:12px;
+}
+
+/* MODALS */
+
+.modal-bg {
+  position:fixed;
+  inset:0;
+  z-index:20;
+  display:none;
+  place-items:center;
+  padding:18px;
+  background:rgba(7,11,20,.62);
+}
+
+.modal-bg.open {
+  display:grid;
+}
+
+.modal {
+  width:min(460px,100%);
+  max-height:calc(100vh - 36px);
+  padding:20px;
+  overflow:auto;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 30px 80px rgba(0,0,0,.3);
+}
+
+.modal h2 {
+  margin:0;
+  font-size:19px;
+}
+
+.field {
+  margin-top:13px;
+}
+
+.field label {
+  display:block;
+  margin-bottom:5px;
+  font-size:11px;
+  font-weight:800;
+}
+
+.field input,
+.field select,
+.title-input {
+  width:100%;
+  min-height:41px;
+  padding:0 11px;
+  color:var(--text);
+  background:var(--soft);
+  border:1px solid var(--line);
+  border-radius:9px;
+}
+
+.modal-actions {
+  display:flex;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:18px;
+}
+
+/* FORM STATUS BUTTONS */
+
+.form-status-buttons {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:6px;
+}
+
+.form-status-btn {
+  min-height:40px;
+  padding:6px;
+  color:var(--muted);
+  background:var(--soft);
+  border:1px solid var(--line);
+  border-radius:8px;
+  font-size:11px;
+  font-weight:800;
+}
+
+.form-status-btn.active {
+  color:white;
+}
+
+.form-status-btn.todo.active {
+  background:var(--todo);
+  border-color:var(--todo);
+}
+
+.form-status-btn.progress.active {
+  background:var(--amber);
+  border-color:var(--amber);
+}
+
+.form-status-btn.completed.active {
+  background:var(--green);
+  border-color:var(--green);
+}
+
+/* TOAST */
+
+.toast {
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:30;
+  max-width:320px;
+  padding:10px 12px;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-left:4px solid var(--primary);
+  border-radius:9px;
+  box-shadow:var(--shadow);
+  font-size:12px;
+}
+
+/* MOBILE */
+
+@media(max-width:720px) {
+  .stats {
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero-top,
+  .topbar {
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .score {
+    width:100%;
+  }
+
+  .filters {
+    margin-right:-4px;
+    padding-right:8px;
+  }
+
+  .filter {
+    flex:0 0 auto;
+  }
+
+  .task {
+    grid-template-columns:28px minmax(0,1fr);
+  }
+
+  .task-right {
+    grid-column:1 / -1;
+    justify-content:flex-end;
+  }
+
+  .status-menu {
+    right:0;
+  }
+}
+
+@media(max-width:480px) {
+  .app {
+    width:calc(100% - 16px);
+    padding-top:12px;
+  }
+
+  .hero {
+    padding:18px;
+  }
+
+  .workspace {
+    padding:12px;
+  }
+
+  .workspace-head {
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .workspace-head .btn {
+    width:100%;
+  }
+
+  .task {
+    padding:10px 9px;
+  }
+
+  .task-right {
+    justify-content:stretch;
+  }
+
+  .status-picker {
+    flex:1;
+  }
+
+  .current-status {
+    width:100%;
+    min-width:0;
+  }
+
+  .task-right .mini {
+    flex:1;
+  }
+
+  .form-status-buttons {
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header class="topbar">
+  <div class="brand">
+    Project Tracker
+    <small>One project, shared live progress</small>
+  </div>
+
+  <div class="actions">
+    <button
+      id="themeBtn"
+      class="icon-btn"
+      type="button"
+      aria-label="Switch to dark mode"
+      title="Switch to dark mode"
+    >
+      <span id="themeIcon" aria-hidden="true">◐</span>
+    </button>
+
+    <button
+      id="loginBtn"
+      class="btn"
+      type="button"
+    >
+      Owner Login
+    </button>
+
+    <button
+      id="logoutBtn"
+      class="btn hidden"
+      type="button"
+    >
+      Logout
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+
+  <div class="hero-top">
+
+    <div>
+      <p class="eyebrow">Current project</p>
+
+      <div id="titleView" class="title-line">
+        <h1 id="projectTitle">
+          Project Progress Tracker
+        </h1>
+
+        <button
+          id="editTitleBtn"
+          class="mini owner-only hidden"
+          type="button"
+        >
+          Edit
+        </button>
+      </div>
+
+      <div id="titleEdit" class="hidden">
+        <input
+          id="titleInput"
+          class="title-input"
+          maxlength="120"
+        >
+
+        <div class="title-edit-actions">
+          <button
+            id="saveTitleBtn"
+            class="btn primary"
+            type="button"
+          >
+            Save
+          </button>
+
+          <button
+            id="cancelTitleBtn"
+            class="btn"
+            type="button"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+
+      <p class="subtitle">
+        Track project activities using To Do, In Progress, and Completed.
+      </p>
+
+      <span
+        id="modeBadge"
+        class="viewer-badge"
+      >
+        Read-only view
+      </span>
+    </div>
+
+    <div class="score">
+      <strong id="overall">0%</strong>
+      <span>Complete</span>
+    </div>
+
+  </div>
+
+  <div
+    class="bar"
+    role="progressbar"
+    aria-label="Overall project completion"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow="0"
+  >
+    <div id="overallBar"></div>
+  </div>
+
+  <div
+    id="appStatus"
+    class="status"
+    aria-live="polite"
+  >
+    Opening project...
+  </div>
+
+</section>
+
+<section class="stats">
+
+  <article class="stat">
+    <strong id="totalStat">0</strong>
+    <span>Total Tasks</span>
+  </article>
+
+  <article class="stat">
+    <strong id="progressStat">0</strong>
+    <span>In Progress</span>
+  </article>
+
+  <article class="stat">
+    <strong id="doneStat">0</strong>
+    <span>Completed</span>
+  </article>
+
+  <article class="stat">
+    <strong id="remainingStat">0</strong>
+    <span>Remaining</span>
+  </article>
+
+</section>
+
+<section class="workspace">
+
+  <div class="workspace-head">
+
+    <div>
+      <h2>Project Activities</h2>
+
+      <p id="workspaceInstruction">
+        Sign in as Owner to update task status.
+      </p>
+    </div>
+
+    <button
+      id="addTaskBtn"
+      class="btn primary owner-only hidden"
+      type="button"
+    >
+      + Add Task
+    </button>
+
+  </div>
+
+  <div
+    class="filters"
+    role="tablist"
+    aria-label="Filter tasks by status"
+  >
+
+    <button
+      class="filter active"
+      data-filter="all"
+      type="button"
+      role="tab"
+      aria-selected="true"
+    >
+      <span>All</span>
+      <span id="allFilterCount" class="filter-count">0</span>
+    </button>
+
+    <button
+      class="filter"
+      data-filter="todo"
+      type="button"
+      role="tab"
+      aria-selected="false"
+    >
+      <span>To Do</span>
+      <span id="todoFilterCount" class="filter-count">0</span>
+    </button>
+
+    <button
+      class="filter"
+      data-filter="progress"
+      type="button"
+      role="tab"
+      aria-selected="false"
+    >
+      <span>In Progress</span>
+      <span id="progressFilterCount" class="filter-count">0</span>
+    </button>
+
+    <button
+      class="filter"
+      data-filter="completed"
+      type="button"
+      role="tab"
+      aria-selected="false"
+    >
+      <span>Completed</span>
+      <span id="completedFilterCount" class="filter-count">0</span>
+    </button>
+
+  </div>
+
+  <div id="taskList" class="tasks">
+    <div class="empty">Loading tasks...</div>
+  </div>
+
+</section>
+
+</div>
+
+<!-- OWNER LOGIN -->
+
+<div
+  id="loginModal"
+  class="modal-bg"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="loginModalTitle"
+>
+
+  <div class="modal">
+    <h2 id="loginModalTitle">Owner Login</h2>
+
+    <form id="loginForm">
+
+      <div class="field">
+        <label for="loginEmail">Email</label>
+
+        <input
+          id="loginEmail"
+          type="email"
+          autocomplete="username"
+          required
+        >
+      </div>
+
+      <div class="field">
+        <label for="loginPassword">Password</label>
+
+        <input
+          id="loginPassword"
+          type="password"
+          autocomplete="current-password"
+          required
+        >
+      </div>
+
+      <div class="modal-actions">
+        <button
+          type="button"
+          class="btn"
+          data-close="loginModal"
+        >
+          Cancel
+        </button>
+
+        <button
+          class="btn primary"
+          type="submit"
+        >
+          Login
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+</div>
+
+<!-- ADD / EDIT TASK -->
+
+<div
+  id="taskModal"
+  class="modal-bg"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="taskModalTitle"
+>
+
+  <div class="modal">
+
+    <h2 id="taskModalTitle">Add Task</h2>
+
+    <form id="taskForm">
+
+      <input id="taskId" type="hidden">
+
+      <div class="field">
+        <label for="taskName">Task Name</label>
+
+        <input
+          id="taskName"
+          maxlength="120"
+          required
+        >
+      </div>
+
+      <div class="field">
+        <label for="taskPriority">Priority</label>
+
+        <select id="taskPriority">
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="taskDue">Due Date</label>
+
+        <input
+          id="taskDue"
+          type="date"
+        >
+      </div>
+
+      <div class="field">
+        <label>Status</label>
+
+        <input
+          id="taskProgress"
+          type="hidden"
+          value="0"
+        >
+
+        <div
+          class="form-status-buttons"
+          role="group"
+          aria-label="Task status"
+        >
+
+          <button
+            class="form-status-btn todo active"
+            data-form-status="0"
+            type="button"
+            aria-pressed="true"
+          >
+            To Do
+          </button>
+
+          <button
+            class="form-status-btn progress"
+            data-form-status="50"
+            type="button"
+            aria-pressed="false"
+          >
+            In Progress
+          </button>
+
+          <button
+            class="form-status-btn completed"
+            data-form-status="100"
+            type="button"
+            aria-pressed="false"
+          >
+            Completed
+          </button>
+
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button
+          type="button"
+          class="btn"
+          data-close="taskModal"
+        >
+          Cancel
+        </button>
+
+        <button
+          class="btn primary"
+          type="submit"
+        >
+          Save
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<!-- SUPABASE -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+(() => {
+
+"use strict";
+
+/* SUPABASE SETTINGS */
+
+const SUPABASE_URL =
+"https://vfkjdccpqmzdfzmrvgmh.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+"sb_publishable_f2DO1NWMbF63qCRhJ9dtFQ_vwT4vY7o";
+
+const OWNER_UID =
+"3395445c-e7ea-4fa9-93c0-38435563b729";
+
+/* APPLICATION STATE */
+
+const $ = id =>
+document.getElementById(id);
+
+let sb = null;
+let project = null;
+let tasks = [];
+let user = null;
+let filter = "all";
+
+const isOwner = () =>
+Boolean(
+  user &&
+  user.id === OWNER_UID
+);
+
+/* STATUS HELPERS */
+
+function normalizeProgress(value) {
+
+  const number =
+  Number(value) || 0;
+
+  if (number >= 100) {
+    return 100;
+  }
+
+  if (number > 0) {
+    return 50;
+  }
+
+  return 0;
+
+}
+
+function statusName(progress) {
+
+  if (progress === 100) {
+    return "Completed";
+  }
+
+  if (progress === 50) {
+    return "In Progress";
+  }
+
+  return "To Do";
+
+}
+
+function statusClass(progress) {
+
+  if (progress === 100) {
+    return "completed";
+  }
+
+  if (progress === 50) {
+    return "progress";
+  }
+
+  return "todo";
+
+}
+
+function statusIcon(progress) {
+
+  if (progress === 100) {
+    return "✓";
+  }
+
+  if (progress === 50) {
+    return "◐";
+  }
+
+  return "○";
+
+}
+
+/* GENERAL HELPERS */
+
+function escapeHtml(value) {
+
+  return String(value ?? "")
+  .replaceAll("&","&amp;")
+  .replaceAll("<","&lt;")
+  .replaceAll(">","&gt;")
+  .replaceAll('"',"&quot;")
+  .replaceAll("'","&#039;");
+
+}
+
+function escapeAttribute(value) {
+
+  return escapeHtml(value)
+  .replaceAll("`","&#096;");
+
+}
+
+function capitalize(value) {
+
+  const text =
+  String(value || "");
+
+  return (
+    text.charAt(0).toUpperCase() +
+    text.slice(1)
+  );
+
+}
+
+function setStatus(
+  message,
+  error = false
+) {
+
+  $("appStatus").textContent =
+  message;
+
+  $("appStatus")
+  .classList
+  .toggle(
+    "error",
+    error
+  );
+
+}
+
+function toast(message) {
+
+  const element =
+  document.createElement("div");
+
+  element.className =
+  "toast";
+
+  element.textContent =
+  message;
+
+  document.body
+  .appendChild(element);
+
+  setTimeout(
+    () => element.remove(),
+    3000
+  );
+
+}
+
+function openModal(id) {
+
+  const modal =
+  $(id);
+
+  if (!modal) {
+    return;
+  }
+
+  modal.classList.add("open");
+
+}
+
+function closeModal(id) {
+
+  const modal =
+  $(id);
+
+  if (!modal) {
+    return;
+  }
+
+  modal.classList.remove("open");
+
+}
+
+/* THEME */
+
+function updateThemeButton() {
+
+  const dark =
+  document.body
+  .classList
+  .contains("dark");
+
+  $("themeBtn")
+  .setAttribute(
+    "aria-label",
+    dark
+    ? "Switch to light mode"
+    : "Switch to dark mode"
+  );
+
+  $("themeBtn")
+  .setAttribute(
+    "title",
+    dark
+    ? "Switch to light mode"
+    : "Switch to dark mode"
+  );
+
+  $("themeIcon").textContent =
+  dark
+  ? "☀"
+  : "◐";
+
+}
+
+/* OWNER / READ-ONLY MODE */
+
+function updateMode() {
+
+  const owner =
+  isOwner();
+
+  document
+  .querySelectorAll(".owner-only")
+  .forEach(element => {
+
+    element
+    .classList
+    .toggle(
+      "hidden",
+      !owner
+    );
+
+  });
+
+  $("loginBtn")
+  .classList
+  .toggle(
+    "hidden",
+    Boolean(user)
+  );
+
+  $("logoutBtn")
+  .classList
+  .toggle(
+    "hidden",
+    !user
+  );
+
+  $("modeBadge").textContent =
+  owner
+  ? "Owner edit mode"
+  : "Read-only view";
+
+  $("workspaceInstruction").textContent =
+  owner
+  ? "Click a task status to change it."
+  : "Sign in as Owner to update task status.";
+
+  renderTasks();
+
+}
+
+/* FILTER COUNTS */
+
+function updateFilterCounts() {
+
+  const allCount =
+  tasks.length;
+
+  const todoCount =
+  tasks.filter(
+    task =>
+    normalizeProgress(
+      task.progress
+    ) === 0
+  ).length;
+
+  const progressCount =
+  tasks.filter(
+    task =>
+    normalizeProgress(
+      task.progress
+    ) === 50
+  ).length;
+
+  const completedCount =
+  tasks.filter(
+    task =>
+    normalizeProgress(
+      task.progress
+    ) === 100
+  ).length;
+
+  $("allFilterCount").textContent =
+  allCount;
+
+  $("todoFilterCount").textContent =
+  todoCount;
+
+  $("progressFilterCount").textContent =
+  progressCount;
+
+  $("completedFilterCount").textContent =
+  completedCount;
+
+}
+
+/* MAIN RENDER */
+
+function render() {
+
+  $("projectTitle").textContent =
+  project?.title ||
+  "Project Progress Tracker";
+
+  const total =
+  tasks.length;
+
+  const completed =
+  tasks.filter(
+    task =>
+    normalizeProgress(
+      task.progress
+    ) === 100
+  ).length;
+
+  const inProgress =
+  tasks.filter(
+    task =>
+    normalizeProgress(
+      task.progress
+    ) === 50
+  ).length;
+
+  let overall = 0;
+
+  if (total > 0) {
+
+    const totalProgress =
+    tasks.reduce(
+      (sum,task) =>
+      sum +
+      normalizeProgress(
+        task.progress
+      ),
+      0
+    );
+
+    overall =
+    Math.round(
+      totalProgress / total
+    );
+
+  }
+
+  $("overall").textContent =
+  overall + "%";
+
+  $("overallBar").style.width =
+  overall + "%";
+
+  document
+  .querySelector(".bar")
+  ?.setAttribute(
+    "aria-valuenow",
+    String(overall)
+  );
+
+  $("totalStat").textContent =
+  total;
+
+  $("progressStat").textContent =
+  inProgress;
+
+  $("doneStat").textContent =
+  completed;
+
+  $("remainingStat").textContent =
+  total - completed;
+
+  updateFilterCounts();
+
+  renderTasks();
+
+}
+
+/* FILTER TASKS */
+
+function visibleTasks() {
+
+  return tasks.filter(task => {
+
+    const progress =
+    normalizeProgress(
+      task.progress
+    );
+
+    if (filter === "todo") {
+      return progress === 0;
+    }
+
+    if (filter === "progress") {
+      return progress === 50;
+    }
+
+    if (filter === "completed") {
+      return progress === 100;
+    }
+
+    return true;
+
+  });
+
+}
+
+/* CLOSE STATUS MENUS */
+
+function closeStatusMenus(
+  exceptMenu = null
+) {
+
+  document
+  .querySelectorAll(".status-menu")
+  .forEach(menu => {
+
+    if (menu !== exceptMenu) {
+      menu.classList.remove("open");
+    }
+
+  });
+
+  document
+  .querySelectorAll("[data-status-toggle]")
+  .forEach(button => {
+
+    const id =
+    button.dataset.statusToggle;
+
+    const menu =
+    document.querySelector(
+      `[data-status-menu="${id}"]`
+    );
+
+    button.setAttribute(
+      "aria-expanded",
+      String(
+        Boolean(
+          menu &&
+          menu.classList.contains("open")
+        )
+      )
+    );
+
+  });
+
+}
+
+/* RENDER TASKS */
+
+function renderTasks() {
+
+  const container =
+  $("taskList");
+
+  if (!container) {
+    return;
+  }
+
+  const owner =
+  isOwner();
+
+  const visible =
+  visibleTasks();
+
+  if (!visible.length) {
+
+    container.innerHTML =
+    '<div class="empty">' +
+    'No tasks found.' +
+    '</div>';
+
+    return;
+
+  }
+
+  container.innerHTML =
+  visible.map(task => {
+
+    const progress =
+    normalizeProgress(
+      task.progress
+    );
+
+    const priority =
+    task.priority ||
+    "medium";
+
+    const cardClass =
+    progress === 100
+    ? "done"
+    : progress === 50
+    ? "in-progress"
+    : "";
+
+    const name =
+    statusName(progress);
+
+    const className =
+    statusClass(progress);
+
+    const icon =
+    statusIcon(progress);
+
+    const taskName =
+    escapeHtml(task.name);
+
+    const safeTaskNameAttribute =
+    escapeAttribute(task.name);
+
+    return `
+
+<article
+  class="task ${cardClass} ${owner ? "" : "read-only"}"
+  aria-label="${safeTaskNameAttribute}, status ${name}"
+>
+
+  <div
+    class="task-icon"
+    aria-hidden="true"
+  >
+    ${icon}
+  </div>
+
+  <div class="task-main">
+
+    <div
+      class="task-name"
+      title="${safeTaskNameAttribute}"
+    >
+      ${taskName}
+    </div>
+
+    <div class="meta">
+
+      <span class="tag ${escapeHtml(priority)}">
+        ${capitalize(priority)}
+      </span>
+
+      <span>
+        ${
+          task.due_date
+          ? "Due " + escapeHtml(task.due_date)
+          : "No due date"
+        }
+      </span>
+
+    </div>
+
+  </div>
+
+  <div class="task-right">
+
+    <div class="status-picker">
+
+      <button
+        class="current-status ${className}"
+        data-status-toggle="${task.id}"
+        type="button"
+        aria-label="${
+          owner
+          ? `Change status for ${safeTaskNameAttribute}. Current status: ${name}`
+          : `${safeTaskNameAttribute} status: ${name}. Owner login required to change status`
+        }"
+        aria-haspopup="${owner ? "menu" : "false"}"
+        aria-expanded="false"
+        title="${
+          owner
+          ? "Change task status"
+          : "Owner login required to change status"
+        }"
+        ${owner ? "" : "disabled"}
+      >
+        <span aria-hidden="true">${icon}</span>
+        <span>${name}</span>
+        ${
+          owner
+          ? '<span aria-hidden="true">▾</span>'
+          : ""
+        }
+      </button>
+
+      ${
+        owner
+        ? `
+
+        <div
+          class="status-menu"
+          data-status-menu="${task.id}"
+          role="menu"
+          aria-label="Select status for ${safeTaskNameAttribute}"
+        >
+
+          <button
+            class="status-option todo"
+            data-status-id="${task.id}"
+            data-status-value="0"
+            type="button"
+            role="menuitem"
+          >
+            ○ &nbsp; To Do
+          </button>
+
+          <button
+            class="status-option progress"
+            data-status-id="${task.id}"
+            data-status-value="50"
+            type="button"
+            role="menuitem"
+          >
+            ◐ &nbsp; In Progress
+          </button>
+
+          <button
+            class="status-option completed"
+            data-status-id="${task.id}"
+            data-status-value="100"
+            type="button"
+            role="menuitem"
+          >
+            ✓ &nbsp; Completed
+          </button>
+
+        </div>
+
+        `
+        : ""
+      }
+
+    </div>
+
+    ${
+      owner
+      ? `
+
+      <button
+        class="mini"
+        data-edit="${task.id}"
+        type="button"
+        aria-label="Edit ${safeTaskNameAttribute}"
+        title="Edit task"
+      >
+        Edit
+      </button>
+
+      <button
+        class="mini"
+        data-delete="${task.id}"
+        type="button"
+        aria-label="Delete ${safeTaskNameAttribute}"
+        title="Delete task"
+      >
+        Delete
+      </button>
+
+      `
+      : ""
+    }
+
+  </div>
+
+</article>
+
+`;
+
+  }).join("");
+
+  if (!owner) {
+    return;
+  }
+
+  /* OPEN STATUS MENU */
+
+  container
+  .querySelectorAll("[data-status-toggle]")
+  .forEach(button => {
+
+    button.onclick =
+    event => {
+
+      event.stopPropagation();
+
+      const id =
+      button.dataset.statusToggle;
+
+      const menu =
+      container.querySelector(
+        `[data-status-menu="${id}"]`
+      );
+
+      if (!menu) {
+        return;
+      }
+
+      closeStatusMenus(menu);
+
+      const isOpen =
+      menu.classList.toggle("open");
+
+      button.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+      );
+
+    };
+
+  });
+
+  /* CHOOSE STATUS */
+
+  container
+  .querySelectorAll("[data-status-id]")
+  .forEach(button => {
+
+    button.onclick =
+    async event => {
+
+      event.stopPropagation();
+
+      const id =
+      button.dataset.statusId;
+
+      const progress =
+      Number(
+        button.dataset.statusValue
+      );
+
+      closeStatusMenus();
+
+      await saveProgress(
+        id,
+        progress
+      );
+
+    };
+
+  });
+
+  /* EDIT */
+
+  container
+  .querySelectorAll("[data-edit]")
+  .forEach(button => {
+
+    button.onclick =
+    () => openTask(
+      button.dataset.edit
+    );
+
+  });
+
+  /* DELETE */
+
+  container
+  .querySelectorAll("[data-delete]")
+  .forEach(button => {
+
+    button.onclick =
+    () => deleteTask(
+      button.dataset.delete
+    );
+
+  });
+
+}
+
+/* LOAD DATA */
+
+async function loadData() {
+
+  if (!sb) {
+    return;
+  }
+
+  setStatus(
+    "Loading shared project data..."
+  );
+
+  const [
+    projectResult,
+    taskResult
+  ] =
+  await Promise.all([
+
+    sb
+    .from("projects")
+    .select("id,title,created_at")
+    .order(
+      "id",
+      {
+        ascending:true
+      }
+    )
+    .limit(1),
+
+    sb
+    .from("tasks")
+    .select(
+      "id,name,priority,due_date,progress,created_at"
+    )
+    .order(
+      "created_at",
+      {
+        ascending:true
+      }
+    )
+
+  ]);
+
+  if (
+    projectResult.error ||
+    taskResult.error
+  ) {
+
+    const error =
+    projectResult.error ||
+    taskResult.error;
+
+    setStatus(
+      error.message,
+      true
+    );
+
+    $("taskList").innerHTML =
+    '<div class="empty">' +
+    'Could not load tasks. Check the Supabase connection and table policies.' +
+    '</div>';
+
+    return;
+
+  }
+
+  project =
+  projectResult.data?.[0] ||
+  null;
+
+  tasks =
+  taskResult.data ||
+  [];
+
+  render();
+
+  setStatus(
+    "Last updated: " +
+    new Date().toLocaleString()
+  );
+
+}
+
+/* SAVE TASK STATUS */
+
+async function saveProgress(
+  id,
+  progress
+) {
+
+  if (!isOwner()) {
+
+    toast(
+      "Owner login is required to change task status"
+    );
+
+    return;
+
+  }
+
+  const {
+    error
+  } =
+  await sb
+  .from("tasks")
+  .update({
+    progress
+  })
+  .eq(
+    "id",
+    id
+  );
+
+  if (error) {
+
+    toast(
+      error.message
+    );
+
+    return;
+
+  }
+
+  toast(
+    progress === 100
+    ? "Task completed"
+    : progress === 50
+    ? "Status changed to In Progress"
+    : "Status changed to To Do"
+  );
+
+  await loadData();
+
+}
+
+/* DELETE TASK */
+
+async function deleteTask(id) {
+
+  if (!isOwner()) {
+
+    toast(
+      "Owner login is required"
+    );
+
+    return;
+
+  }
+
+  const confirmed =
+  confirm(
+    "Delete this task?"
+  );
+
+  if (!confirmed) {
+    return;
+  }
+
+  const {
+    error
+  } =
+  await sb
+  .from("tasks")
+  .delete()
+  .eq(
+    "id",
+    id
+  );
+
+  if (error) {
+
+    toast(
+      error.message
+    );
+
+    return;
+
+  }
+
+  toast(
+    "Task deleted"
+  );
+
+  await loadData();
+
+}
+
+/* TASK FORM STATUS */
+
+function setFormStatus(value) {
+
+  const progress =
+  normalizeProgress(value);
+
+  $("taskProgress").value =
+  String(progress);
+
+  document
+  .querySelectorAll("[data-form-status]")
+  .forEach(button => {
+
+    const active =
+    Number(
+      button.dataset.formStatus
+    ) === progress;
+
+    button
+    .classList
+    .toggle(
+      "active",
+      active
+    );
+
+    button.setAttribute(
+      "aria-pressed",
+      String(active)
+    );
+
+  });
+
+}
+
+document
+.querySelectorAll("[data-form-status]")
+.forEach(button => {
+
+  button.onclick =
+  () => {
+
+    setFormStatus(
+      Number(
+        button.dataset.formStatus
+      )
+    );
+
+  };
+
+});
+
+/* OPEN TASK FORM */
+
+function openTask(id) {
+
+  if (!isOwner()) {
+
+    toast(
+      "Owner login is required"
+    );
+
+    return;
+
+  }
+
+  const task =
+  tasks.find(
+    item =>
+    String(item.id) ===
+    String(id)
+  );
+
+  $("taskId").value =
+  task?.id ||
+  "";
+
+  $("taskName").value =
+  task?.name ||
+  "";
+
+  $("taskPriority").value =
+  task?.priority ||
+  "medium";
+
+  $("taskDue").value =
+  task?.due_date ||
+  "";
+
+  setFormStatus(
+    task?.progress ||
+    0
+  );
+
+  $("taskModalTitle").textContent =
+  task
+  ? "Edit Task"
+  : "Add Task";
+
+  openModal(
+    "taskModal"
+  );
+
+  setTimeout(
+    () => $("taskName").focus(),
+    0
+  );
+
+}
+
+/* SAVE TASK */
+
+$("taskForm").onsubmit =
+async event => {
+
+  event.preventDefault();
+
+  if (!isOwner()) {
+
+    toast(
+      "Owner login is required"
+    );
+
+    return;
+
+  }
+
+  const id =
+  $("taskId").value;
+
+  const name =
+  $("taskName")
+  .value
+  .trim();
+
+  if (!name) {
+
+    toast(
+      "Enter a task name"
+    );
+
+    return;
+
+  }
+
+  const payload = {
+    name,
+    priority:
+    $("taskPriority").value,
+    due_date:
+    $("taskDue").value ||
+    null,
+    progress:
+    Number(
+      $("taskProgress").value
+    )
+  };
+
+  let result;
+
+  if (id) {
+
+    result =
+    await sb
+    .from("tasks")
+    .update(payload)
+    .eq(
+      "id",
+      id
+    );
+
+  } else {
+
+    result =
+    await sb
+    .from("tasks")
+    .insert(payload);
+
+  }
+
+  if (result.error) {
+
+    toast(
+      result.error.message
+    );
+
+    return;
+
+  }
+
+  closeModal(
+    "taskModal"
+  );
+
+  toast(
+    id
+    ? "Task updated"
+    : "Task added"
+  );
+
+  await loadData();
+
+};
+
+/* LOGIN */
+
+$("loginForm").onsubmit =
+async event => {
+
+  event.preventDefault();
+
+  if (!sb) {
+
+    toast(
+      "Supabase is not connected"
+    );
+
+    return;
+
+  }
+
+  const email =
+  $("loginEmail")
+  .value
+  .trim();
+
+  const password =
+  $("loginPassword").value;
+
+  const {
+    error
+  } =
+  await sb.auth
+  .signInWithPassword({
+    email,
+    password
+  });
+
+  if (error) {
+
+    toast(
+      error.message
+    );
+
+    return;
+
+  }
+
+  $("loginPassword").value =
+  "";
+
+  closeModal(
+    "loginModal"
+  );
+
+  toast(
+    "Owner login successful"
+  );
+
+};
+
+$("loginBtn").onclick =
+() => {
+
+  openModal(
+    "loginModal"
+  );
+
+  setTimeout(
+    () => $("loginEmail").focus(),
+    0
+  );
+
+};
+
+/* LOGOUT */
+
+$("logoutBtn").onclick =
+async () => {
+
+  const {
+    error
+  } =
+  await sb.auth
+  .signOut();
+
+  if (error) {
+
+    toast(
+      error.message
+    );
+
+    return;
+
+  }
+
+  toast(
+    "Logged out"
+  );
+
+};
+
+/* ADD TASK */
+
+$("addTaskBtn").onclick =
+() => openTask();
+
+/* PROJECT TITLE */
+
+$("editTitleBtn").onclick =
+() => {
+
+  if (!isOwner()) {
+    return;
+  }
+
+  $("titleInput").value =
+  project?.title ||
+  "";
+
+  $("titleView")
+  .classList
+  .add("hidden");
+
+  $("titleEdit")
+  .classList
+  .remove("hidden");
+
+  $("titleInput").focus();
+
+};
+
+$("cancelTitleBtn").onclick =
+() => {
+
+  $("titleView")
+  .classList
+  .remove("hidden");
+
+  $("titleEdit")
+  .classList
+  .add("hidden");
+
+};
+
+$("saveTitleBtn").onclick =
+async () => {
+
+  if (!isOwner()) {
+
+    toast(
+      "Owner login is required"
+    );
+
+    return;
+
+  }
+
+  const title =
+  $("titleInput")
+  .value
+  .trim();
+
+  if (!title) {
+
+    toast(
+      "Enter a project title"
+    );
+
+    return;
+
+  }
+
+  let result;
+
+  if (project) {
+
+    result =
+    await sb
+    .from("projects")
+    .update({
+      title
+    })
+    .eq(
+      "id",
+      project.id
+    );
+
+  } else {
+
+    result =
+    await sb
+    .from("projects")
+    .insert({
+      title
+    });
+
+  }
+
+  if (result.error) {
+
+    toast(
+      result.error.message
+    );
+
+    return;
+
+  }
+
+  $("cancelTitleBtn").click();
+
+  toast(
+    "Project title updated"
+  );
+
+  await loadData();
+
+};
+
+/* FILTERS */
+
+document
+.querySelectorAll(".filter")
+.forEach(button => {
+
+  button.onclick =
+  () => {
+
+    document
+    .querySelectorAll(".filter")
+    .forEach(item => {
+
+      const active =
+      item === button;
+
+      item
+      .classList
+      .toggle(
+        "active",
+        active
+      );
+
+      item.setAttribute(
+        "aria-selected",
+        String(active)
+      );
+
+    });
+
+    filter =
+    button.dataset.filter;
+
+    renderTasks();
+
+  };
+
+});
+
+/* CLOSE MODALS */
+
+document
+.querySelectorAll("[data-close]")
+.forEach(button => {
+
+  button.onclick =
+  () => closeModal(
+    button.dataset.close
+  );
+
+});
+
+document
+.querySelectorAll(".modal-bg")
+.forEach(modal => {
+
+  modal.onclick =
+  event => {
+
+    if (event.target === modal) {
+      closeModal(modal.id);
+    }
+
+  };
+
+});
+
+/* CLOSE MENUS WHEN CLICKING OUTSIDE */
+
+document.addEventListener(
+  "click",
+  () => closeStatusMenus()
+);
+
+/* ESCAPE KEY */
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if (event.key !== "Escape") {
+      return;
+    }
+
+    closeStatusMenus();
+
+    document
+    .querySelectorAll(".modal-bg.open")
+    .forEach(modal => {
+
+      closeModal(modal.id);
+
+    });
+
+  }
+);
+
+/* DARK MODE */
+
+$("themeBtn").onclick =
+() => {
+
+  document.body
+  .classList
+  .toggle("dark");
+
+  localStorage.setItem(
+    "ppt_theme",
+    document.body
+    .classList
+    .contains("dark")
+    ? "dark"
+    : "light"
+  );
+
+  updateThemeButton();
+
+};
+
+/* INITIALIZE */
+
+async function init() {
+
+  if (
+    localStorage
+    .getItem("ppt_theme") ===
+    "dark"
+  ) {
+
+    document.body
+    .classList
+    .add("dark");
+
+  }
+
+  updateThemeButton();
+
+  if (!window.supabase) {
+
+    setStatus(
+      "Supabase could not load. Check your internet connection.",
+      true
+    );
+
+    $("taskList").innerHTML =
+    '<div class="empty">' +
+    'Unable to connect to Supabase.' +
+    '</div>';
+
+    return;
+
+  }
+
+  try {
+
+    sb =
+    window.supabase
+    .createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+    const {
+      data:{
+        session
+      }
+    } =
+    await sb.auth
+    .getSession();
+
+    user =
+    session?.user ||
+    null;
+
+    updateMode();
+
+    await loadData();
+
+    sb.auth
+    .onAuthStateChange(
+      async (
+        _event,
+        session
+      ) => {
+
+        user =
+        session?.user ||
+        null;
+
+        updateMode();
+
+        await loadData();
+
+      }
+    );
+
+  } catch(error) {
+
+    console.error(error);
+
+    setStatus(
+      "Application error: " +
+      error.message,
+      true
+    );
+
+    $("taskList").innerHTML =
+    '<div class="empty">' +
+    'The application could not start.' +
+    '</div>';
+
+  }
+
+}
+
+init();
+
+})();
+</script>
+
+</body>
+</html>
