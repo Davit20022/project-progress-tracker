@@ -111,8 +111,20 @@ button:disabled {
 }
 
 .brand {
+  display:flex;
+  align-items:center;
+  gap:11px;
   font-size:17px;
   font-weight:850;
+}
+
+.brand-logo {
+  display:block;
+  width:52px;
+  height:52px;
+  flex:0 0 52px;
+  object-fit:contain;
+  border-radius:12px;
 }
 
 .brand small {
@@ -125,7 +137,6 @@ button:disabled {
   font-size:11px;
   font-weight:500;
 }
-
 .actions {
   display:flex;
 
@@ -1702,13 +1713,23 @@ body.dark .bar > div::after {
 <header class="topbar">
 
 
+
+  
 <div class="brand">
 
-Project Tracker
+<img
+  class="brand-logo"
+  src="project-tracker-logo.png"
+  alt="Project Progress Tracker logo"
+>
 
-<small>
-One project, shared live progress
-</small>
+<div>
+  Project Tracker
+
+  <small>
+    One project, shared live progress
+  </small>
+</div>
 
 </div>
 
