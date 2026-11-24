@@ -7,6 +7,4 @@ Build a clean, modern, and responsive Project
     width="650"
     alt="Project Tracker"
   />
-  <h1>Credit Risk Project Tracker</h1>
-  <p>Credit Risk Grading and Loan Classification Policy</p>
-</div>
+ 
